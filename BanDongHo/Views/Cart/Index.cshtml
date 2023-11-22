@@ -1,0 +1,124 @@
+﻿@model BanDongHo.Models.Cart
+@using BanDongHo.Models
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+@{ var formatMoney = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+@{
+    ViewBag.Title = "Index";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+@if (Model != null)
+{
+    <div style="margin-bottom:500px;margin-top:20px;" class="container">
+        <table id="cart" class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th style="width:50%">Sản phẩm</th>
+                    <th style="width:10%;padding:5px 5px 5px 0">Giá tiền</th>
+                    <th style="width:8%">Số lượng</th>
+                    <th style="width:22%" class="text-center"></th>
+                    <th style="width:10%">Tổng số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var item in Model.Items)
+                {
+                    if (item._sanpham.TongSoLuong > 0)
+                    {
+                        decimal total = item._soluong * (decimal)item._sanpham.GiaSP.Value;
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="~/Image/@Html.DisplayFor(model => item._sanpham.AnhMinhHoa)" alt="..." class="img-responsive" /></div>
+                                    <div class="col-sm-10">
+                                        <h3 style="text-align:left;" class="nomargin">@Html.DisplayFor(model => item._sanpham.TenSP)</h3>
+                                        <p style="text-align:left;">
+                                            Màu dây: @Html.DisplayFor(model => item._sanpham.Mau)
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="border: none; display: flex; border: none; margin-top: 34px;" data-th="Price"> @String.Format(formatMoney, "{0:c0}", item._sanpham.GiaSP)</td>
+                            @using (Html.BeginForm("UpdateCartQua", "Cart", new { MaSP = item._sanpham.IDSanpham }))
+                            {
+                                <td style="margin-top:26px;" data-th="Quantity">
+                                    <input type="hidden" value="@item._sanpham.IDSanpham" name="idPro" />
+                                    <input value="@item._soluong" name="cartQuantity" style="margin-top:26px" type="number" class="form-control text-center" min="1" max="50">
+                                </td>
+
+                                <td class="actions" data-th="">
+                                    <button style="margin-top:26px" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                    <a href="/Cart/RemoveCart/@item._sanpham.IDSanpham" style="margin-top:26px" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            }
+                            <td class="text-center actions" style="margin-top: 26px">
+                                <span style="margin-top:206px">@Model.Total_quantity()</span>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" style="text-align:center; color:red;">Sold Out</td>
+                        </tr>
+                        decimal total = item._soluong * (decimal)item._sanpham.GiaSP.Value;
+                        <tr>
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="~/Image/@Html.DisplayFor(model => item._sanpham.AnhMinhHoa)" alt="..." class="img-responsive" /></div>
+                                    <div class="col-sm-10">
+                                        <h3 style="text-align:left;" class="nomargin">@Html.DisplayFor(model => item._sanpham.TenSP)</h3>
+                                        <p style="text-align:left;">
+                                            Màu dây: @Html.DisplayFor(model => item._sanpham.Mau)
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td style="border: none; display: flex; border: none; margin-top: 34px;" data-th="Price"> @String.Format(formatMoney, "{0:c0}", item._sanpham.GiaSP)</td>
+                            @using (Html.BeginForm("UpdateCartQua", "Cart", new { MaSP = item._sanpham.IDSanpham }))
+                            {
+                                <td style="margin-top:26px;" data-th="Quantity">
+                                    <input type="hidden" value="@item._sanpham.IDSanpham" name="idPro" />
+                                    <input value="@item._soluong" name="cartQuantity" style="margin-top:26px" type="number" class="form-control text-center" min="1" max="50">
+                                </td>
+
+                                <td class="actions" data-th="">
+                                    <button style="margin-top:26px" class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
+                                    <a href="/Cart/RemoveCart/@item._sanpham.IDSanpham" style="margin-top:26px" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></a>
+                                </td>
+                            }
+                            <td class="text-center actions" style="margin-top: 26px">
+                                <span style="margin-top:206px">@Model.Total_quantity()</span>
+                            </td>
+                        </tr>
+                    }
+
+
+                }
+                @if (TempData["OutOfStockMessage"] != null)
+                {
+                    <div class="alert alert-danger">
+                        @TempData["OutOfStockMessage"]
+                    </div>
+                }
+
+            </tbody>
+            <tfoot>
+                <tr class="visible-xs">
+                    <td style="font-size: 30px; " class="text-center"><strong>Tổng số lượng: @Model.Total_quantity()</strong></td>
+                </tr>
+                <tr>
+                    <td><a href="@Url.Action("Index","HomePage")" class="btn btn-warning"><i class="fa fa-angle-left"></i> Tiếp tục mua hàng</a></td>
+                    <td colspan="2" class="hidden-xs"></td>
+                    <td style="width:1000px" class="hidden-xs text-center"><strong style="font-size:20px;">Tổng tiền:  @String.Format(formatMoney, "{0:c0}", Model.Total_money())</strong></td>
+                    <td><a href="@Url.Action("OrderDetail", "Cart")" class="btn btn-success btn-block">Xác nhận <i class="fa fa-angle-right"></i></a></td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+
+}
+

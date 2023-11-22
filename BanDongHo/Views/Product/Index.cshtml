@@ -1,0 +1,215 @@
+﻿@model BanDongHo.Models.Product
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@{ var formatMoney = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+@{
+    ViewBag.Title = "Detail";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Style/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Style/Owl/slide.css">
+    <link rel="stylesheet" href="/owl.carousel.min.css">
+    <link rel="stylesheet" href="/owl.theme.default.min.css">
+    <link rel="stylesheet" href="JS/StyleSilder.js">
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="container_navbar">
+            <div class="row_navbar">
+
+                <div class="nav_content">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nam" })">Đồng hồ nam</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nữ" })">Đồng hồ nữ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Đôi" })">Đồng hồ đôi</a>
+                    </li>
+                    <li style="width:201px!important;" class="nav-item">
+                        <a class="nav-link" href="news-category.html">Đồng hồ treo tường</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("GioiThieu","HomePage")"><i class="ri-profile-line"></i>Giới thiệu</a>
+                    </li>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="margin-bottom:20px;" class="content">
+        <div class="container_content">
+            <dv class="content_breadcrum">
+
+                <ul style="padding: 0;border-bottom: 2px solid rgb(233, 226, 226);padding-bottom: 10px;margin-bottom: 15px;margin-right: 120px;" class="breadcrumbs">
+                    <li> <a href="main.html">Điện thoại</a></li>
+                    <li>
+                        <span>></span>
+                        <a href="">Điện thoại iPhone</a>
+                    </li>
+                </ul>
+
+
+                <h4>@Model.TenSP  | Chính hãng</h4>
+
+                <div class="content_details">
+                    <div class="content_details_img">
+                        <img id="mainImage" src="~/Image/@Model.AnhMinhHoa1" alt="">
+                        <div class="content_details_img_sub">
+                            <img data-image="/Image/@Model.AnhMinhHoa1" src="~/Image/@Model.AnhMinhHoa1" alt="">
+                            <img data-image="/Image/@Model.AnhMoTa1" src="~/Image/@Model.AnhMoTa1" alt="">
+
+                            <img data-image="/Image/@Model.AnhMoTa2" src="~/Image/@Model.AnhMoTa2" alt="">
+                            <img data-image="/Image/@Model.AnhMoTa3" src="~/Image/@Model.AnhMoTa3" alt="">
+
+                        </div>
+                        <div class="content_details_policy">
+                            <div class="policy">
+                                <ul class="policy_list">
+                                    <li>
+                                        <i class="fa-solid fa-right-left"></i>
+                                        <div>Hư gì đổi nấy 12 tháng tại các cửa hàng Daniel Wellington toàn quốc (miễn phí tháng đầu)</div>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-shield"></i>
+                                        <div>Bảo hành chính hãng điện thoại 1 năm tại các trung tâm bảo hành hãng</div>
+                                    </li>
+                                    <li>
+                                        <i class="fa-solid fa-box"></i>
+                                        <div>Bộ sản phẩm gồm: Dây, hộp, giấy hướng dẫn và tâm mở ốc thay dây</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="content_details_product_info">
+                            <div class="product_info">
+                                <img src="~/Image/@Model.AnhMoTa6" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content_details_info">
+                        <div class="content_details_info_price">
+                            <h2>@Model.TenSP , @Model.DuongKinh</h2>
+                            <span> @String.Format(formatMoney, "{0:c0}", Model.GiaBanDau)</span>
+                            <h3>  @String.Format(formatMoney, "{0:c0}", Model.GiaSP)</h3>
+                        </div>
+                        
+                        <div class="content_details_btn">
+                            <a style="color:#000;font-size:15px" href="@Url.Action("AddToCart", "Cart", new {id = Model.IDSanpham })" class="add_to_cart_btn">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                                <span>Thêm vào giỏ hàng</span>
+                            </a>
+                            <a style="color:#000;" href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = Model.IDSanpham })">
+
+                                <button style="height: 42px;" class="add_to_favorite">
+                                    <i class="fa-solid fa-heart"></i>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="content_details_attribute_list">
+                            <div class="attribute_header">
+                                <i class="fa-solid fa-gears"></i>
+                                <span>Thông số kỹ thuật</span>
+                            </div>
+                            <ul>
+
+                                <li style="background-color: rgb(186, 190, 193);">
+                                    <span style="vertical-align: middle;">Đường kình:</span>
+                                    <span style="float:right;">@Model.DuongKinh</span>
+                                </li>
+                                <li>
+                                    <span>Loại máy:</span>
+                                    <span style="float:right;">@Model.LoaiMay</span>
+                                </li>
+                                <li style="background-color: rgb(186, 190, 193);">
+                                    <span style="vertical-align: middle;">Màu sắc:</span>
+                                    <span style="float:right;">@Model.Mau</span>
+                                </li>
+                                <li>
+                                    <span>Chất liệu dây:</span>
+                                    <span style="float:right;">@Model.ChatLieuDay</span>
+                                </li>
+                                <li style="background-color: rgb(186, 190, 193);">
+                                    <span style="vertical-align: middle;">Độ chiệu nước:</span>
+                                    <span style="float:right;">@Model.DoChiuNuoc</span>
+                                </li>
+                                <li>
+                                    <span>Độ dày dây:</span>
+                                    <span style="float:right;">@Model.DoDay</span>
+                                </li>
+                                <li style="background-color: rgb(186, 190, 193);">
+                                    <span style="vertical-align: middle;">Size dây:</span>
+                                    <span style="float:right;">@Model.Size</span>
+                                </li>
+                            </ul>
+
+                        </div>
+                        <div class="content_details_special_product">
+                            <div class="special_product_header">
+                                <i class="fa-solid fa-circle-info"></i>
+                                <span>Đặc điểm nổi bật</span>
+                            </div>
+                            <div class="special_product_content">
+                                <p>
+                                    @Model.MoTaSP
+                                    @* Thiết kế mới vuông vức hơn so với iPhone 12, các cạnh viền được làm phẳng. Mặt lưng được hoàn thiện bóng bẩy và bền hơn.
+                                        Màn hình Super Retina XDR 6.1 inch trên iPhone 13 và 6.7 inch trên iPhone 13 Pro Max, sáng hơn, độ tương phản cao hơn. Tần số quét được nâng cấp lên 120Hz trên phiên bản Pro.Camera có nhiều cải tiến về phần cứng và xử lý ảnh. Cụm camera kép 12MP trên iPhone 13 và cụm camera ba ống kính 12MP trên bản Pro. Khả năng chụp thiếu sáng được cải thiện đáng kể.Chip A15 Bionic mới nhất, nhanh hơn 50% so với các chip Android.*@
+                                </p>
+                            </div>
+                        </div>
+                        <div class="content_details_improve_product">
+                            <div class="special_product_header">
+                                <i class="fa-regular fa-sun"></i>
+                                <span>Chức năng cải tiến</span>
+                            </div>
+                            <div class="special_product_content">
+                                <p>
+                                    Đồng hồ Daniel Wellington có thiết kế tối giản, thanh lịch, mang đậm phong cách Bắc Âu. Mặt đồng hồ tròn, kích thước nhỏ gọn, các vạch chỉ giờ được in đơn giản.
+                                    Dây đeo có thể là dây da, dây vải NATO hoặc dây lưới Milanese.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const subImages = document.querySelectorAll('.content_details_img_sub img');
+
+        subImages.forEach(img => {
+            img.addEventListener('click', function () {
+                mainImage.src = this.dataset.image;
+            });
+        });
+    </script>
+    <script src="~/JS/StyleSilder.js"></script>
+</body>
+</html>
+
+
+

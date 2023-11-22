@@ -1,0 +1,96 @@
+﻿@model BanDongHo.Models.Cart
+@using BanDongHo.Models
+@{
+    ViewBag.Title = "OrderDetail";
+    Customer user = Session["TaiKhoan"] as Customer;
+}
+@{ var formatMoney = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=., initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+    <div style="width: 1300px;margin-left: 80px;margin-right: 40px;margin-bottom:220px" class="container_orderdetail">
+        <h3 style="margin-bottom:15px">CHI TIẾT ĐƠN HÀNG</h3>
+        @using (Html.BeginForm("DongYDatHang", "Cart"))
+        {
+            <div style="display: flex;" class="container_orderdetail_nav">
+                <div style="width: 900px; border: 1px solid #cfc6c6; padding: 10px; border-radius: 10px; margin-right: 30px;" class="container_orderdetail_nav_left ">
+                    <table style="width: 100%;" id="cart">
+                        <tr style="text-align:center">
+                            <th>ID</th>
+                            <th>Sản phẩm</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                        @foreach (var item in Model.Items)
+                        {
+
+                            <tr style="">
+                                <td style="">@Html.DisplayFor(model => item._sanpham.IDSanpham)</td>
+                                <td>
+                                    <img style="width:63px;height:84px" src="~/Image/@Html.DisplayFor(model => item._sanpham.AnhMinhHoa)" alt="">
+                                </td>
+                                <td>@Html.DisplayFor(model => item._sanpham.TenSP)</td>
+
+                                <td>@Html.DisplayFor(model => item._soluong)</td>
+                                <td>@String.Format(formatMoney, "{0:c0}", item._sanpham.GiaSP)</td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div style="border: 1px solid #cfc6c6; padding: 10px; border-radius: 10px; width: 500px" class="container_orderdetail_nav_right">
+                    <div style="font-size:25px;color:black;font-weight:600;margin-bottom:15px">Thông tin khách hàng</div>
+                    <div style="display:flex;justify-content:space-between" class="info_customer">
+                        <div style="" class="info_customer_left">
+                            <div style="margin-bottom:5px">Tên khách hàng: </div>
+                            <div style="margin-bottom:5px">Giới tính: </div>
+                            <div style="margin-bottom:5px">SĐT: </div>
+                            <div style="margin-bottom:5px">Email: </div>
+                            <div style="margin-bottom:5px">Ngày mua: </div>
+
+                        </div>
+                        <div class="info_customer_right">
+                            <div style="margin-bottom:5px;text-align:right">@user.TenKH</div>
+                            <div style="margin-bottom: 5px; text-align: right">@user.GioiTinh</div>
+                            <div style="margin-bottom: 5px; text-align: right">@user.SDT</div>
+                            <div style="margin-bottom: 5px; text-align: right">@user.Email</div>
+                            <div style="margin-bottom: 5px; text-align: right"> @DateTime.Now.ToShortDateString()</div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <label class="control-label">Họ tên người nhận: </label>
+                        <samp>@TempData["loiten"]</samp>
+                        <input class="billing-address-name form-control" type="text" name="hoten" placeholder="Họ tên">
+                    </div>
+                    <div class="controls">
+                        <label class="control-label">Địa chỉ giao: </label>
+                        <samp>@TempData["loidiachi"]</samp>
+                        <input class="form-control" type="text" name="diachigiao" placeholder="Địa chỉ giao">
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:10px;color:black;font-size:15px">
+                        <div style="float:right;" class="">Tổng số lượng mua: @Model.Total_quantity()</div>
+                        <div style="float:right" class="">Tổng tiền: @String.Format(formatMoney, "{0:c0}", Model.Total_money())</div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <input style="width: 10%;height:40px; margin-top: 20px; float: right; background: #fdd835;border:none;border-radius:10px" class="submitbtn" type="submit" value="Xác nhận">
+
+        }
+
+    </div>
+   
+</body>
+</html>
+

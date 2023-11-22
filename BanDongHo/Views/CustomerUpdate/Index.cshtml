@@ -1,0 +1,117 @@
+﻿@model IEnumerable<BanDongHo.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Style/admin.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+</head>
+<body>
+    <style>
+        .content_header_icon img {
+            height: 50px;
+            width: 50px;
+            border: 1px solid #808080;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ddd;
+        }
+    </style>
+    <div style=" margin-bottom: 402px;margin-top:30px " class="container">
+
+        <div class="nav">
+
+            <div class="content">
+
+                <div class="content_table">
+                    <table id="myTable" class="display">
+                        <thead>
+                            <tr>
+                                <th>Tên khách hàng</th>
+                                <th>Giới tính: </th>
+                                <th>Số điện thoại</th>
+                                <th>Email: </th>
+
+                                <th></th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- code hiển thị data -->
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+
+                                    <td>@Html.DisplayFor(modelItem => item.TenKH)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.GioiTinh)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.SDT)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Email)</td>
+
+                                    <td class="modifi-space">
+                                        <div class="flex-modifibtn">
+                                            <button style="padding: 10px; margin-bottom: 15px; background-color: rgb(67 220 73); border: none; border-radius: 5px;">
+                                                <div class="morebtn">
+                                                    @Html.ActionLink("Edit", "Edit", "CustomerUpdate", new { id = item.IDUser }, null)
+
+
+                                                </div>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                    
+
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!--Sử dụng thư viện chart để vẽ biểu đồ-->
+                </main>
+
+                <footer>
+                    <p>Địa chỉ: 828 Sư Vạn Hạnh</p>
+                    <p>Tel: +28 999 888 555</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+    //
+    const image = document.getElementById("image");
+    const input = document.getElementById("file");
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            image.src = URL.createObjectURL(input.files[0]);
+        }
+    });
+</script>
+

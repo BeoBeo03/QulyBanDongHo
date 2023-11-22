@@ -1,0 +1,94 @@
+﻿
+.container {
+    background-image: url("/Images/bg_login.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+.login-box {
+    position: relative;
+}
+
+.login_box_container {
+    position: absolute;
+    left: 550px;
+    height: 325px;
+    width: 450px;
+    margin-top: 180px;
+    background-color: white;
+    color: black;
+    align-items: center;
+    box-shadow: 1px 1px 1px 1px grey;
+    border-radius: 5%;
+    animation: fadein 1s linear;
+}
+
+.nav {
+    position: absolute;
+    margin-top: 39px;
+    margin-left: 50px;
+}
+
+.nav_header {
+    margin-bottom: 40px;
+    margin-left: 100px;
+}
+
+.inputGroup {
+    position: relative;
+}
+
+    .inputGroup input {
+        outline: none;
+        border: 2px solid rgb(200, 200, 200);
+        padding: 0.9em;
+        border-radius: 30px;
+        background-color: transparent;
+        width: 333px;
+    }
+
+    .inputGroup label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-left: 10px;
+        padding: 10px;
+        transition: .5s;
+        background-color: transparent;
+    }
+
+    .inputGroup :is(input:focus, input:valid) ~ label {
+        transform: translateY(-50%) scale(.9);
+        margin: 0em;
+        margin-left: 1.3em;
+        padding: 0.4em;
+        background-color: #fff;
+    }
+
+    .inputGroup :is(input:focus, input:valid) {
+        border-color: rgb(150, 150, 200);
+    }
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateX(0);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}

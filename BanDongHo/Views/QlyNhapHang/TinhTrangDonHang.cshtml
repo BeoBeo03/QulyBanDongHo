@@ -1,0 +1,77 @@
+﻿@model IEnumerable<BanDongHo.Models.DonHang>
+@{
+    ViewBag.Title = "TinhTrangDonHang";
+}
+
+
+<div style="margin-bottom:432px" id="donhang-container">
+    <!-- Đây là nơi hiển thị danh sách đơn hàng -->
+    <h2>Lịch sử đơn hàng</h2>
+    <table class="table">
+        <tr>
+            <th>ID đơn hàng</th>
+            <th>Tên khách hàng</th>
+            <th>Địa chỉ giao hàng</th>
+            <th>Tổng số lượng</th>
+            <th>Ngày đặt hàng</th>
+            <th>Tình trạng</th>
+            <th>Tổng thành tiền</th>
+        </tr>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.IDDonHang</td>
+                <td>@order.Ten</td>
+                <td>@order.DCGiao</td>
+                <td>@order.TongSoLuong</td>
+                <td>@order.NgayBan</td>
+                <td>@order.TinhTrang</td>
+                <td>@order.TongThanhTien</td>
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Mặc định hiển thị tất cả đơn hàng khi trang được tải
+        TinhTrangDonHang("Tất cả");
+
+        $(".btn-group button").click(function () {
+            var trangThai = $(this).data("trangthai").trim(); // Lấy trạng thái từ thuộc tính data-trangthai
+
+            // Gọi hàm để hiển thị danh sách đơn hàng tương ứng
+            TinhTrangDonHang(trangThai);
+        });
+    });
+
+    // Hàm gửi trạng thái đơn hàng và hiển thị danh sách đơn hàng tương ứng
+    function TinhTrangDonHang(trangThai) {
+        $.ajax({
+            // Thay đổi đường dẫn tới action của bạn
+            type: "GET",
+            data: { trangThai: trangThai },
+            success: function (data) {
+                var $donHangContainer = $("#donhang-container");
+                $donHangContainer.html(""); // Xóa dữ liệu cũ
+
+                if (data.length > 0) {
+                    // Hiển thị danh sách đơn hàng tương ứng
+                    var table = '<table class="table"><tr><th>ID đơn hàng</th><th>Tên khách hàng</th><th>Địa chỉ giao hàng</th><th>Tổng số lượng</th><th>Ngày đặt hàng</th><th>Tình trạng</th><th>Tổng thành tiền</th></tr>';
+                    $.each(data, function (index, order) {
+                        table += '<tr><td>' + order.IDDonHang + '</td><td>' + order.Ten + '</td><td>' + order.DCGiao + '</td><td>' + order.TongSoLuong + '</td><td>' + order.NgayBan + '</td><td>' + order.TinhTrang + '</td><td>' + order.TongThanhTien + '</td></tr>';
+                    });
+                    table += '</table>';
+                    $donHangContainer.html(table);
+                }
+                else {
+                    // Thông báo nếu không có đơn hàng tương ứng
+                    $donHangContainer.html("<p>Không có đơn hàng nào.</p>");
+                }
+            },
+            error: function () {
+                alert("Có lỗi xảy ra khi tải danh sách đơn hàng.");
+            }
+        });
+    }
+</script>

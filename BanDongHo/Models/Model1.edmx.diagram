@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e5908435f8642ed97dbbb5f6fdf95ba" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="DoAnPM_LTModel.Category" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.CTDonHang" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.Customer" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.DonHang" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.Favorite" Width="1.5" PointX="8.25" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.Product" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnPM_LTModel.ThongKe" Width="1.5" PointX="8.25" PointY="1.5" IsExpanded="true" />
+        <AssociationConnector Association="DoAnPM_LTModel.pk_phanloai_sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_ctdh_donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_ctdh_sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_donhang_khachhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_yeuthich_user" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_thongke_donhang" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_yeuthich_sanpham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnPM_LTModel.fk_thongke_sanpham" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

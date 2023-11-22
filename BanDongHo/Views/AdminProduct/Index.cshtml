@@ -1,0 +1,212 @@
+﻿@model IEnumerable<BanDongHo.Models.Product>
+@{
+    Layout = null;
+}
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Style/admin.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+</head>
+<body>
+    <style>
+        .content_header_icon img {
+            height: 50px;
+            width: 50px;
+            border: 1px solid #808080;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ddd;
+        }
+    </style>
+    <div class="container">
+        <div class="sidebar">
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","HomePage")" class="item">
+                <img class="icon" src="~/Image/icon_admin1.png" alt="">
+                <div style="list-style: bold;font-weight: 600; font-size: 24px;" class="text">
+                    Admin website
+
+                </div>
+            </a>
+            <hr>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","AdminProduct")" class="item">
+                <img class="icon" src="~/Image/icon_product.png" alt="">
+                <div class="text">
+                    Sản phẩm
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachPhanLoai","AdminCategory")" class="item">
+                <img class="icon" src="~/Image/icon_category.png" alt="">
+                <div class="text">
+                    Phân loại
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","Admin")" class="item">
+                <img class="icon" src="~/Image/icon_khachhang.jpg" alt="">
+                <div class="text">
+                    Thống tin khách hàng
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachDonHang","QlyNhapHang")" class="item">
+                <img class="icon" src="~/Image/icon_bil.png" alt="">
+                <div class="text">
+                    Danh sách đơn hàng
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachChuaDuyet","QlyNhapHang")" class="item">
+                <img class="icon" src="~/Image/icon_bill.png" alt="">
+                <div class="text">
+                    Chờ duyệt
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","AdminFavorite")" class="item">
+                <img class="icon" src="~/Image/favorite1.jpg" alt="">
+                <div class="text">
+                    Khách hàng yêu thích
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","TKDS")" class="item">
+                <img class="icon" src="~/Image/icon_thongke.jpg" alt="">
+                <div class="text">
+                    Thống kê doanh thu
+
+                </div>
+            </a>
+        </div>
+        <div class="nav">
+
+            <div class="content">
+                <div style="display:flex;justify-content:space-between;" class="content_header">
+                    <h1>Quản lí sản phẩm</h1>
+                    <div style="display:flex;" class="content_header_icon">
+                        <img style="margin-top:25px;" id="image" src="~/Image/icon_admin.png" alt="" />
+                        <div style="margin-left:7px;margin-top:27px">
+                            <div style="margin-right:20px;margin-bottom:5px">Admin</div>
+                            <input style="" type="file" id="file" name="file" />
+
+                        </div>
+                    </div>
+                </div>
+                <button style="padding: 10px; margin-bottom: 15px; background-color: rgb(241, 241, 128);border:none;border-radius:5px;">
+                    <a class="Newitem-Button" href="@Url.Action("Create","AdminProduct")">Thêm Mới</a>
+                </button>
+
+                <div class="content_table">
+                    <table id="myTable" class="display">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên SP</th>
+                                <th>Số lượng</th>
+                                <th>Giá Bán</th>
+                                <th>Sản phẩm 1</th>
+                                <th>Sản phẩm 2</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- code hiển thị data -->
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.IDSanpham)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TenSP)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.TongSoLuong)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.GiaSP)</td>
+                                    <td> <img style="width:100px;height:100px;" src="~/Image/@item.AnhMinhHoa"></td>
+                                    <td> <img style="width:100px;height:100px;" src="~/Image/@item.AnhMoTa2" /></td>
+
+                                    <td class="modifi-space">
+                                        <div class="flex-modifibtn">
+                                            <button style="padding: 10px; margin-bottom: 15px; background-color: rgb(67 220 73); border: none; border-radius: 5px;">
+                                                <div class="morebtn">
+                                                    @Html.ActionLink("Edit", "Edit", "AdminProduct", new { id = item.IDSanpham }, null)
+
+
+                                                </div>
+                                            </button>
+
+                                        </div>
+                                    </td>
+                                    <td class="modifi-space">
+                                        <div class="flex-modifibtn">
+                                            <button style="padding: 10px; margin-bottom: 15px; background-color: rgb(241 53 39); border: none; border-radius: 5px;">
+                                                <div class="deletebtn">
+                                                    @Html.ActionLink("Delete", "Delete", "AdminProduct", new { id = item.IDSanpham }, null)
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="flex-modifibtn">
+                                            <button style="padding: 10px; margin-bottom: 15px; background-color: #FF9800; border: none; border-radius: 5px;">
+                                                <div class="details">
+                                                    @Html.ActionLink("Details", "Details", "AdminProduct", new { id = item.IDSanpham }, null)
+                                                </div>
+                                            </button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <!--Sử dụng thư viện chart để vẽ biểu đồ-->
+                </main>
+
+                <footer>
+                    <p>Địa chỉ: 828 Sư Vạn Hạnh</p>
+                    <p>Tel: +28 999 888 555</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+    //
+    const image = document.getElementById("image");
+    const input = document.getElementById("file");
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            image.src = URL.createObjectURL(input.files[0]);
+        }
+    });
+</script>
+

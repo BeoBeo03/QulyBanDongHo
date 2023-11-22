@@ -1,0 +1,192 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+@{
+    ViewBag.Title = "Register";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Style/login-register.css">
+</head>
+<body>
+    <style>
+        body {
+            margin: 0;
+            
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 40%;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+        }
+
+            .container img {
+                width: 115%;
+                height: 50%;
+                margin-top: 363px;
+            }
+
+        .login-box {
+            position: relative;
+        }
+
+        .login_box_container {
+            border: 1px solid grey;
+            position: absolute;
+            left: 620px;
+            height: 568px;
+            width: 450px;
+            margin-top: 100px;
+            background-color: transparent;
+            color: white;
+            align-items: center;
+            box-shadow: 1px 1px 1px 1px white;
+            border-radius: 5%;
+            animation: fadein 1s linear;
+        }
+
+        .nav {
+            position: absolute;
+            margin-top: 10px;
+            margin-left: 50px;
+        }
+
+        .nav_header {
+            margin-bottom: 40px;
+            margin-left: 100px;
+        }
+
+        .inputGroup {
+            position: relative;
+        }
+
+            .inputGroup input {
+                margin-bottom: 20px;
+                outline: none;
+                border: 2px solid rgb(200, 200, 200);
+                padding: 0.9em;
+                border-radius: 30px;
+                background-color: transparent;
+                width: 333px;
+            }
+
+            .inputGroup label {
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin-left: 10px;
+                padding: 10px;
+                transition: .5s;
+                background-color: transparent;
+            }
+
+            .inputGroup :is(input:focus, input:valid) ~ label {
+                border-radius:10px;
+                transform: translateY(-50%) scale(.9);
+                margin: 0em;
+                background-color: #302e2e;
+                margin-left: 1.3em;
+               
+            }
+
+            .inputGroup :is(input:focus, input:valid) {
+                color: black;
+                font-size: 15px;
+                font-weight: 800;
+                border-color: rgb(150, 150, 200);
+            }
+
+        .add_to_cart_btn {
+            margin-top: 10px;
+            padding: 10px;
+            width: 360px;
+            border-radius: 30px;
+            border: 2px solid rgb(247, 247, 11);
+            background-color: rgb(239 239 23);
+        }
+
+            .add_to_cart_btn:hover {
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            }
+
+
+            .add_to_cart_btn:hover {
+                animation: shake 0.3s ease-in-out;
+            }
+
+            .add_to_cart_btn:hover {
+                color: #000;
+            }
+
+            .add_to_cart_btn:hover {
+                transform: scale(1);
+                background-color: #fff;
+            }
+        }
+    </style>
+    <div class="container">
+        @*<img class="img_bg" src="~/Images/bg_login.png" alt="">*@
+        <div class="login-box">
+            <div class="login_box_container">
+                <div class="nav">
+                    <div class="nav_header">
+                        <h3 style="margin-left:17px;">Tạo tài khoản</h3>
+                    </div>
+                    @using (Html.BeginForm("Register", "LoginRegister"))
+                    {
+                        @Html.ValidationSummary(true)
+                        <div style="" class="inputGroup">
+                            @Html.TextBox("Email", null, new { @class = "form-control", @id = "email", required = "required", name = "Email" })
+                            <label for="name">Email</label>
+                        </div>
+                        <div class="inputGroup">
+                            @Html.Password("MatKhau", null, new { @class = "form-control", @id = "matkhau", required = "required", maxlength = "10", name = "MatKhau" })
+                            <label for="password">Mật khẩu</label>
+                        </div>
+                        <div class="inputGroup">
+                            @Html.Password("MatKhau", null, new { @class = "form-control", @id = "matkhau", required = "required", maxlength = "10", name = "MatKhau" })
+                            <label for="password">Nhập lại mật khẩu</label>
+                        </div>
+                        <div class="inputGroup">
+                            @Html.TextBox("GioiTinh", null, new { @class = "form-control", @id = "tenkh", required = "required", maxlength = "20", name = "GioiTinh" })
+                            <label for="name">Giới tính</label>
+                        </div>
+                        <div class="inputGroup">
+                            @Html.TextBox("TenKH", null, new { @class = "form-control", @id = "matkhau", required = "required", maxlength = "20", name = "TenKH" })
+                            <label for="name">Tên khách hàng</label>
+                        </div>
+                        <div class="inputGroup">
+                            @Html.TextBox("SDT", null, new { @class = "form-control", @id = "matkhau", required = "required", maxlength = "10", name = "SDT" })
+                            <label for="number">SDT</label>
+                        </div>
+                        <div style="float:right;margin-right:44px;" class="btn_login">
+                            <a style="text-decoration: none; list-style: none; color: rgb(247, 247, 11)" href="@Url.Action("Login","LoginRegister")">
+                                <span>Đăng nhập ngay!!</span>
+                            </a>
+
+                        </div>
+                        <button class="add_to_cart_btn" type="submit">
+                            <a class="button_top">Đăng ký</a>
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <img style="width:100%;margin-right:10px;" class="img_bg" src="~/Image/dong-ho-nam-ma-vuong.jpg" alt="">
+</body>
+</html>
+
+

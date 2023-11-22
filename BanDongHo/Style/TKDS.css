@@ -1,0 +1,166 @@
+﻿* {
+    margin: 0px;
+}
+
+html {
+    background-color: #aacbde;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px grey;
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+/*Header*/
+.header {
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    background-color: rgb(37, 186, 186);
+    width: 100%;
+    height: 70px;
+}
+
+.header-list {
+    padding-left: 20px;
+    color: black;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.list-active-item {
+    position: relative;
+    top: 20px;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+}
+
+:hover.list-active-item {
+    color: white;
+}
+
+.title-big {
+    position: relative;
+    width: max-content;
+    left: 42%;
+    margin-top: 50px;
+    display: block;
+    font-size: 1.8em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+/* Nut bam */
+button {
+    --button_radius: 0.75em;
+    --button_color: rgb(27, 177, 82);
+    --button_outline_color: #000000;
+    --delete-button_color: rgb(235, 13, 13);
+    font-weight: bold;
+    border: none;
+    border-radius: var(--button_radius);
+    background: var(--button_outline_color);
+    padding: 0;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+/* nút thêm mới */
+.Newitem-Button {
+    display: block;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 2.5em;
+    background: var(--button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+button:hover .Newitem-Button {
+    /* Pull the button upwards when hovered */
+    transform: translateY(-0.33em);
+    background-color: rgb(27, 177, 82, 0.7);
+    color: white;
+}
+
+button:active .Newitem-Button {
+    /* Push the button downwards when pressed */
+    transform: translateY(0);
+}
+
+
+
+/* Nút xóa */
+.deletebtn {
+    display: block;
+    box-sizing: border-box;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid var(--button_outline_color);
+    border-radius: var(--button_radius);
+    padding: 0.75em 2.5em;
+    background: var(--delete-button_color);
+    color: var(--button_outline_color);
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+}
+
+button:hover .deletebtn {
+    transform: translateY(-0.33em);
+    background-color: rgb(235, 13, 13, 0.7);
+    color: white;
+}
+
+button:active .deletebtn {
+    transform: translateY(0);
+}
+
+.flex-modifibtn {
+    margin-top: 20px;
+    display: flex;
+}
+
+.modifi-space {
+    width: 120px;
+}
+
+.total-table {
+    font-weight: bold;
+    position: relative;
+    left: -40%;
+}
+
+#myTable_filter {
+    margin-bottom: 10px !important;
+    margin-right: 5px !important;
+}
+
+.dataTables_length {
+    margin-left: 5px !important;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #000 !important;
+}
+
+.dataTables_info {
+    margin-left: 5px !important;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #000 !important;
+}

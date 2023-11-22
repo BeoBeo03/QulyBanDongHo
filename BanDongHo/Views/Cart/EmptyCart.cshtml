@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "EmptyCart";
+}
+
+<!DOCTYPE html>
+
+<div style="margin-bottom: 410px; background: rgb(255, 255, 255); padding: 40px 20px; border-radius: 4px; text-align: center; width: 100%;" class="container">
+    <img style="margin-bottom:50px;" src="~/Image/empty.png" alt="Alternate Text" />
+    <h2 style="margin:20px auto; color:red;">@ViewBag.EmptyNotification</h2>
+    <a style="margin-bottom:20px;text-decoration:none;color:#000000" href="@Url.Action("Index","HomePage")" class="btn btn-danger  ">Tiếp tục mua sắm >></a>
+
+</div>
+
