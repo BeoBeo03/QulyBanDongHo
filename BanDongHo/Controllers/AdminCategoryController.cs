@@ -80,5 +80,43 @@ namespace BanDongHo.Controllers
             return View(phanLoai);
 
         }
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Category phanLoai = db.Category.Find(id);
+
+            if (phanLoai == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(phanLoai);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Category phanLoai = db.Category.Find(id);
+
+            // Kiểm tra xem phân loại có đang được sử dụng trong sản phẩm hay không
+            bool isUsedInProduct = db.Product.Any(s => s.IDPhanloai == id);
+
+            if (isUsedInProduct)
+            {
+                TempData["thongbao"] = "Không thể xóa phân loại vì đang được sử dụng trong sản phẩm.";
+                return RedirectToAction("DanhSachPhanLoai");
+            }
+
+            db.Category.Remove(phanLoai);
+            db.SaveChanges();
+
+            TempData["thongbao"] = "Xóa phân loại thành công.";
+            return View(phanLoai);
+        }
     }
 }

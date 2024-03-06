@@ -1,0 +1,138 @@
+﻿@model BanDongHo.Models.Category
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+    <link rel="stylesheet" href="~/Style/admin.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <a href="@Url.Action("Index","HomePage")" class="item">
+                <img class="icon" src="~/Image/icon_admin1.png" alt="">
+                <div style="list-style: bold;font-weight: 600; font-size: 24px;" class="text">
+                    Admin website
+
+                </div>
+            </a>
+            <hr>
+            <a href="@Url.Action("Index","AdminProduct")" class="item">
+                <img class="icon" src="~/Image/icon_product.png" alt="">
+                <div class="text">
+                    Sản phẩm
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachPhanLoai","AdminCategory")" class="item">
+                <img class="icon" src="~/Image/category.jpg" alt="">
+                <div class="text">
+                    Phân loại
+
+                </div>
+            </a>
+            <a href="@Url.Action("Index","Admin")" class="item">
+                <img class="icon" src="~/Image/icon_khachhang.jpg" alt="">
+                <div class="text">
+                    Thống tin khách hàng
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachDonHang","QlyNhapHang")" class="item">
+                <img class="icon" src="~/Image/icon_bil.png" alt="">
+                <div class="text">
+                    Danh sách đơn hàng
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachChuaDuyet","QlyNhapHang")" class="item">
+                <img class="icon" src="~/Image/icon_bill.png" alt="">
+                <div class="text">
+                    Chờ duyệt
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","AdminFavorite")" class="item">
+                <img class="icon" src="~/Image/favorite1.jpg" alt="">
+                <div class="text">
+                    Khách hàng yêu thích
+
+                </div>
+            </a>
+            <a style="color:black;text-decoration:none;" href="@Url.Action("Index","TKDS")" class="item">
+                <img class="icon" src="~/Image/icon_thongke.jpg" alt="">
+                <div class="text">
+                    Thống kê doanh thu
+
+                </div>
+            </a>
+        </div>
+        <div style="margin-top:100px;margin-left:100px" class="content_table">
+            <table style="width:1200px" id="myTable" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên phân loại</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td> @Html.DisplayFor(model => model.IDPhanloai)</td>
+                        <td> @Html.DisplayFor(model => model.TenPhanLoai)</td>
+
+                    </tr>
+
+
+                </tbody>
+            </table>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color">
+                    <input style="cursor:pointer;padding: 10px; margin-bottom: 15px; background-color: rgb(241 53 39); border: none; border-radius: 5px;" type="submit" value="Delete" class="btn btn-danger" />
+                    <button style="padding: 10px; margin-bottom: 15px; background-color: rgb(66 75 239); border: none; border-radius: 5px; }">
+
+                        @Html.ActionLink("Back to List", "DanhSachPhanLoai")
+                    </button>
+                </div>
+            }
+        </div>
+
+
+
+    </div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
+
+<script>
+
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+
+    //
+    const image = document.getElementById("image");
+    const input = document.getElementById("file");
+
+    input.addEventListener("change", () => {
+        if (input.files.length > 0) {
+            image.src = URL.createObjectURL(input.files[0]);
+        }
+    });
+</script>

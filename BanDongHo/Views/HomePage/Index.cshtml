@@ -311,8 +311,17 @@
                 @foreach (var item in Model)
                 {
                     <div style="margin-top: 10px;height:390px;" class="element">
+
                         <a href="@Url.Action("Index","Product",new { id = item.IDSanpham })">
-                            <div style="padding-left: 20px;" class="card">
+
+                            <div style="padding-left: 20px;position:relative" class="card">
+                                @if (item.TongSoLuong == 0)
+                                {
+                                    <!-- Hiển thị panel nhỏ khi số lượng tồn = 0 -->
+                                    <div style=" text-align: center; border-radius: 0 15px 0 15px; margin-left: 130px; position: absolute; width: 85px; height: 26px; background: #f11b0c;" class="sold-out-panel">
+                                        <p style="margin-top:3px" class="sold-out-text">Hết hàng</p>
+                                    </div>
+                                }
                                 <img style="width: 195px;height:231px;" class="card-img-top" src="~/Image/@item.AnhMinhHoa" alt="Card image cap">
                                 <div style="margin-bottom:4px;" class="overlay">
                                     <img style="height: 235px;border-radius: 15px 15px 0 0;width: 235px;" class="overlay_img" src="~/Image/@item.AnhMoTa2" alt="">
@@ -355,8 +364,9 @@
     </div>
     <div style="display: flex; margin-left: 700px; margin-top: 30px; color: #4f4fd4 ">
 
-    <button style="border-radius:3px;border:1px solid red;color:black;font-size:16px;background:none;background-color:none;text-align:center;padding:7px;width:200px" id="show-more-button">Xem thêm</button>
-    
+        <button style="border-radius:3px;border:1px solid red;color:black;font-size:16px;background:none;background-color:none;text-align:center;padding:7px;width:200px" id="show-more-button">Xem thêm</button>
+        <button style="display:none;border-radius:3px;border:1px solid red;color:black;font-size:16px;background:none;background-color:none;text-align:center;padding:7px;width:200px" id="show-less-button">Thu gọn</button>
+
     </div>
     <div style="margin-top: 50px;" class="inner-wrapper">
 
@@ -420,18 +430,46 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="path/to/owl.carousel.min.js"></script>
     <script>
+        // Biến để theo dõi số sản phẩm đã hiển thị
+        var displayedProducts = 3;
+
         // Thêm sự kiện click cho nút "Xem thêm"
         document.getElementById("show-more-button").addEventListener("click", function () {
             // Lấy tất cả các phần tử sản phẩm
             var productElements = document.querySelectorAll(".element");
 
-            // Hiển thị tất cả các sản phẩm còn lại
-            productElements.forEach(function (element) {
-                element.style.display = "block";
-            });
+            // Hiển thị thêm sản phẩm nếu có
+            for (var i = displayedProducts; i < productElements.length; i++) {
+                productElements[i].style.display = "block";
+            }
+
+            // Cập nhật số sản phẩm đã hiển thị
+            displayedProducts = productElements.length;
+
+            // Hiển thị nút "Thu gọn" và ẩn nút "Xem thêm"
+            document.getElementById("show-more-button").style.display = "none";
+            document.getElementById("show-less-button").style.display = "block";
+        });
+
+        // Thêm sự kiện click cho nút "Thu gọn"
+        document.getElementById("show-less-button").addEventListener("click", function () {
+            // Ẩn những sản phẩm từ thứ 4 trở đi
+            var productElements = document.querySelectorAll(".element");
+            for (var i = 3; i < productElements.length; i++) {
+                productElements[i].style.display = "none";
+            }
+
+            // Cập nhật số sản phẩm đã hiển thị
+            displayedProducts = 3;
+
+            // Ẩn nút "Thu gọn" và hiển thị nút "Xem thêm"
+            document.getElementById("show-more-button").style.display = "block";
+            document.getElementById("show-less-button").style.display = "none";
         });
 
     </script>
+
+
 
 </body>
 </html>

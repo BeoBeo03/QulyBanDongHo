@@ -69,7 +69,7 @@ namespace BanDongHo.Controllers
             return cart;
         }
         public ActionResult UpdateCartQua(FormCollection form)
-        {
+        {   
             Cart cart = Session["Cart"] as Cart;
             int id_sp = int.Parse(Request.Form["idPro"]);
             int new_quantity = int.Parse(Request.Form["cartQuantity"]);
@@ -140,12 +140,6 @@ namespace BanDongHo.Controllers
                 _order.NgayBan = DateTime.Now;
                 _order.TinhTrang = "Chưa duyệt";
                 _order.TongThanhTien = (decimal)cart.Total_money();
-                // Lấy số tiền khách hàng nhập vào từ form
-
-                // Tính tiền thối
-               
-
-
                 db.DonHang.Add(_order);
                 db.SaveChanges();
 
@@ -153,10 +147,8 @@ namespace BanDongHo.Controllers
                 {
                     // lưu dòng sản phẩm vào chi tiết hóa đơn
                     CTDonHang _order_detail = new CTDonHang();
-                    
                     _order_detail.IDDonHang = _order.IDDonHang;
                     _order_detail.IDSanpham = item._sanpham.IDSanpham;
-                   
                     _order_detail.TenSP = item._sanpham.TenSP;
                     _order_detail.Soluong = item._soluong;
                     _order_detail.GiaTien = item._sanpham.GiaSP;
@@ -174,13 +166,8 @@ namespace BanDongHo.Controllers
                     db.CTDonHang.Add(_order_detail);
                     //Số lượng tồn khi đặt mua hàng sẽ trừ vào tổng số lượng
                     db.SaveChanges();
-
-
                 }
-
-                
                 cart.ClearCart();
-
                 return RedirectToAction("CheckOut_Success", "Cart");
             }
             else
