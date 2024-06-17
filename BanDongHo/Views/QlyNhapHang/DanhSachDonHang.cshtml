@@ -1,0 +1,182 @@
+﻿@model IEnumerable<BanDongHo.Models.DonHang>
+@{
+    Layout = null;
+}
+@{ var formatMoney = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+
+<link rel="stylesheet" href="~/Style/admin.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+
+<div style="margin:0px;max-width:1500px;display:flex" class="container_admin">
+    <div class="sidebar">
+        <a style="color:black;text-decoration:none;" href="@Url.Action("Index","HomePage")" class="item">
+            <img class="icon" src="~/Image/icon_admin1.png" alt="">
+            <div style="list-style: bold;font-weight: 600; font-size: 24px;" class="text">
+                Admin website
+
+            </div>
+        </a>
+        <hr>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("Index","AdminProduct")" class="item">
+            <img class="icon" src="~/Image/icon_product.png" alt="">
+            <div class="text">
+                Sản phẩm
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachPhanLoai","AdminCategory")" class="item">
+            <img class="icon" src="~/Image/icon_category.png" alt="">
+            <div class="text">
+                Phân loại
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("Index","Admin")" class="item">
+            <img class="icon" src="~/Image/icon_khachhang.jpg" alt="">
+            <div class="text">
+                Thống tin khách hàng
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachDonHang","QlyNhapHang")" class="item">
+            <img class="icon" src="~/Image/icon_bil.png" alt="">
+            <div class="text">
+                Danh sách đơn hàng
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("DanhSachChuaDuyet","QlyNhapHang")" class="item">
+            <img class="icon" src="~/Image/icon_bill.png" alt="">
+            <div class="text">
+                Chờ duyệt
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("Index","AdminFavorite")" class="item">
+            <img class="icon" src="~/Image/favorite1.jpg" alt="">
+            <div class="text">
+                Khách hàng yêu thích
+
+            </div>
+        </a>
+        <a style="color:black;text-decoration:none;" href="@Url.Action("Index","TKDS")" class="item">
+            <img class="icon" src="~/Image/icon_thongke.jpg" alt="">
+            <div class="text">
+                Thống kê doanh thu
+
+            </div>
+        </a>
+    </div>
+    <div class="nav">
+        <div style="margin-left:50px" class="content">
+            @using (Html.BeginForm("DanhSachDonHang", "QlyNhapHang", FormMethod.Get))
+            {
+                <div style="margin-top:40px;margin-bottom:20px" class="col-lg-8">
+                    <div class="input-group custom-search-form">
+                        <input type="text" class="form-control" value="@ViewBag.TuKhoa" placeholder="Tìm kiếm theo mã đơn hàng khách hàng" name="timkiem">
+                        <span class="input-group-btn">
+                            <button style="width:70px;height:40px" class="btn btn-success" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            }
+            <br />
+            <hr />
+            @if (TempData["thongbao"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>@TempData["thongbao"]</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                    <tr>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            <div>Tên khách hàng</div>
+                        </th>
+                        <th>Địa chỉ</th>
+                        <th>
+                            Ngày bán
+                        </th>
+                        <th>
+                            Ngày giao
+                        </th>
+
+                        <th>
+                            Tổng tiền
+                        </th>
+
+                        <th>
+                            Trạng thái
+                        </th>
+                        <th>Chức năng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        using (Html.BeginForm("HuyDonHang", "QlyNhapHang", new { @madh = item.IDDonHang }))
+                        {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IDDonHang)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Ten)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DCGiao)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayBan)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayGiao)
+                        </td>
+                        <td>
+                            @string.Format("{0:0,0}", @item.TongThanhTien) VNĐ
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TinhTrang)
+                        </td>
+                        <td>
+                            @if (item.TinhTrang != "Đã hủy" || @String.Format(formatMoney, "{0:c0}", item.TongThanhTien) != "Đã thanh toán")
+                            {
+                                @Html.ActionLink("Chi tiết", "ChiTietDH", "QlyNhapHang", new { madh = item.IDDonHang }, new { @class = "btn btn-primary btn-sm", @title = "Xem chi tiết" })
+
+
+                                <button class="btn btn-danger btn-sm" title="Hủy đơn hàng" type="submit">Xóa đơn</button>
+
+
+                            }
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+</script>

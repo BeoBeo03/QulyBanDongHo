@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DoAnPM_LTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IDPhanloai" />
+          </Key>
+          <Property Name="IDPhanloai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenPhanLoai" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CTDonHang">
+          <Key>
+            <PropertyRef Name="IDCTDonHang" />
+          </Key>
+          <Property Name="IDCTDonHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDDonHang" Type="int" />
+          <Property Name="IDSanpham" Type="int" />
+          <Property Name="TenSP" Type="nvarchar" MaxLength="100" />
+          <Property Name="Soluong" Type="int" />
+          <Property Name="GiaTien" Type="float" />
+          <Property Name="ThanhTien" Type="float" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="100" />
+          <Property Name="SDT" Type="int" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="IDDonHang" />
+          </Key>
+          <Property Name="IDDonHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDUser" Type="int" />
+          <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+          <Property Name="TongSoLuong" Type="int" />
+          <Property Name="NgayBan" Type="datetime" />
+          <Property Name="TongThanhTien" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TienTraLai" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TinhTrang" Type="nvarchar" MaxLength="100" />
+          <Property Name="NgayGiao" Type="datetime" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="100" />
+          <Property Name="DCGiao" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="IDYeuThich" />
+          </Key>
+          <Property Name="IDYeuThich" Type="int" Nullable="false" />
+          <Property Name="IDSanPham" Type="int" />
+          <Property Name="IDUser" Type="int" />
+          <Property Name="NgayThem" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="IDSanpham" />
+          </Key>
+          <Property Name="IDSanpham" Type="int" Nullable="false" />
+          <Property Name="IDPhanloai" Type="int" />
+          <Property Name="TenSP" Type="nvarchar" MaxLength="100" />
+          <Property Name="TongSoLuong" Type="int" />
+          <Property Name="GiaBanDau" Type="float" />
+          <Property Name="GiaSP" Type="float" />
+          <Property Name="AnhMinhHoa" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnhMinhHoa1" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnhMoTa1" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnhMoTa2" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnhMoTa3" Type="nvarchar" MaxLength="100" />
+          <Property Name="AnhMoTa6" Type="nvarchar" MaxLength="100" />
+          <Property Name="MoTaSP" Type="nvarchar" MaxLength="1000" />
+          <Property Name="LoaiMay" Type="nvarchar" MaxLength="100" />
+          <Property Name="DuongKinh" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mau" Type="nvarchar" MaxLength="100" />
+          <Property Name="ChatLieuDay" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoChiuNuoc" Type="nvarchar" MaxLength="100" />
+          <Property Name="DoDay" Type="nvarchar" MaxLength="100" />
+          <Property Name="Size" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ThongKe">
+          <Key>
+            <PropertyRef Name="IDThongKe" />
+          </Key>
+          <Property Name="IDThongKe" Type="int" Nullable="false" />
+          <Property Name="IDSanpham" Type="int" />
+          <Property Name="IDDonHang" Type="int" />
+          <Property Name="DoanhSo" Type="float" />
+          <Property Name="NgayThongKe" Type="datetime" />
+        </EntityType>
+        <Association Name="fk_ctdh_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+          <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="CTDonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctdh_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="CTDonHang">
+              <PropertyRef Name="IDSanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_donhang_khachhang">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_thongke_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+          <End Role="ThongKe" Type="Self.ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="ThongKe">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_thongke_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ThongKe" Type="Self.ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="ThongKe">
+              <PropertyRef Name="IDSanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_yeuthich_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="IDSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_yeuthich_user">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pk_phanloai_sanpham">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IDPhanloai" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IDPhanloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DoAnPM_LTModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CTDonHang" EntityType="Self.CTDonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongKe" EntityType="Self.ThongKe" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_ctdh_donhang" Association="Self.fk_ctdh_donhang">
+            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="CTDonHang" EntitySet="CTDonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctdh_sanpham" Association="Self.fk_ctdh_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CTDonHang" EntitySet="CTDonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_donhang_khachhang" Association="Self.fk_donhang_khachhang">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_thongke_donhang" Association="Self.fk_thongke_donhang">
+            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="ThongKe" EntitySet="ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_thongke_sanpham" Association="Self.fk_thongke_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ThongKe" EntitySet="ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_yeuthich_sanpham" Association="Self.fk_yeuthich_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_yeuthich_user" Association="Self.fk_yeuthich_user">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="pk_phanloai_sanpham" Association="Self.pk_phanloai_sanpham">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DoAnPM_LTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="IDPhanloai" />
+          </Key>
+          <Property Name="IDPhanloai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenPhanLoai" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.pk_phanloai_sanpham" FromRole="Category" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="CTDonHang">
+          <Key>
+            <PropertyRef Name="IDCTDonHang" />
+          </Key>
+          <Property Name="IDCTDonHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDDonHang" Type="Int32" />
+          <Property Name="IDSanpham" Type="Int32" />
+          <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Soluong" Type="Int32" />
+          <Property Name="GiaTien" Type="Double" />
+          <Property Name="ThanhTien" Type="Double" />
+          <NavigationProperty Name="DonHang" Relationship="Self.fk_ctdh_donhang" FromRole="CTDonHang" ToRole="DonHang" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_ctdh_sanpham" FromRole="CTDonHang" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="Int32" />
+          <NavigationProperty Name="DonHang" Relationship="Self.fk_donhang_khachhang" FromRole="Customer" ToRole="DonHang" />
+          <NavigationProperty Name="Favorite" Relationship="Self.fk_yeuthich_user" FromRole="Customer" ToRole="Favorite" />
+        </EntityType>
+        <EntityType Name="DonHang">
+          <Key>
+            <PropertyRef Name="IDDonHang" />
+          </Key>
+          <Property Name="IDDonHang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDUser" Type="Int32" />
+          <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TongSoLuong" Type="Int32" />
+          <Property Name="NgayBan" Type="DateTime" Precision="3" />
+          <Property Name="TongThanhTien" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TienTraLai" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TinhTrang" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NgayGiao" Type="DateTime" Precision="3" />
+          <Property Name="Ten" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DCGiao" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CTDonHang" Relationship="Self.fk_ctdh_donhang" FromRole="DonHang" ToRole="CTDonHang" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_donhang_khachhang" FromRole="DonHang" ToRole="Customer" />
+          <NavigationProperty Name="ThongKe" Relationship="Self.fk_thongke_donhang" FromRole="DonHang" ToRole="ThongKe" />
+        </EntityType>
+        <EntityType Name="Favorite">
+          <Key>
+            <PropertyRef Name="IDYeuThich" />
+          </Key>
+          <Property Name="IDYeuThich" Type="Int32" Nullable="false" />
+          <Property Name="IDSanPham" Type="Int32" />
+          <Property Name="IDUser" Type="Int32" />
+          <Property Name="NgayThem" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Customer" Relationship="Self.fk_yeuthich_user" FromRole="Favorite" ToRole="Customer" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_yeuthich_sanpham" FromRole="Favorite" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="IDSanpham" />
+          </Key>
+          <Property Name="IDSanpham" Type="Int32" Nullable="false" />
+          <Property Name="IDPhanloai" Type="Int32" />
+          <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TongSoLuong" Type="Int32" />
+          <Property Name="GiaBanDau" Type="Double" />
+          <Property Name="GiaSP" Type="Double" />
+          <Property Name="AnhMinhHoa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnhMinhHoa1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnhMoTa1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnhMoTa2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnhMoTa3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AnhMoTa6" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaSP" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiMay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DuongKinh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mau" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ChatLieuDay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoChiuNuoc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DoDay" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.pk_phanloai_sanpham" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="CTDonHang" Relationship="Self.fk_ctdh_sanpham" FromRole="Product" ToRole="CTDonHang" />
+          <NavigationProperty Name="Favorite" Relationship="Self.fk_yeuthich_sanpham" FromRole="Product" ToRole="Favorite" />
+          <NavigationProperty Name="ThongKe" Relationship="Self.fk_thongke_sanpham" FromRole="Product" ToRole="ThongKe" />
+        </EntityType>
+        <EntityType Name="ThongKe">
+          <Key>
+            <PropertyRef Name="IDThongKe" />
+          </Key>
+          <Property Name="IDThongKe" Type="Int32" Nullable="false" />
+          <Property Name="IDSanpham" Type="Int32" />
+          <Property Name="IDDonHang" Type="Int32" />
+          <Property Name="DoanhSo" Type="Double" />
+          <Property Name="NgayThongKe" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="DonHang" Relationship="Self.fk_thongke_donhang" FromRole="ThongKe" ToRole="DonHang" />
+          <NavigationProperty Name="Product" Relationship="Self.fk_thongke_sanpham" FromRole="ThongKe" ToRole="Product" />
+        </EntityType>
+        <Association Name="pk_phanloai_sanpham">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="IDPhanloai" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IDPhanloai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctdh_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+          <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="CTDonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_ctdh_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="CTDonHang" Type="Self.CTDonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="CTDonHang">
+              <PropertyRef Name="IDSanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_donhang_khachhang">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="DonHang">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_yeuthich_user">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_thongke_donhang">
+          <End Role="DonHang" Type="Self.DonHang" Multiplicity="0..1" />
+          <End Role="ThongKe" Type="Self.ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DonHang">
+              <PropertyRef Name="IDDonHang" />
+            </Principal>
+            <Dependent Role="ThongKe">
+              <PropertyRef Name="IDDonHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_yeuthich_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="Favorite" Type="Self.Favorite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="Favorite">
+              <PropertyRef Name="IDSanPham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_thongke_sanpham">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ThongKe" Type="Self.ThongKe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="IDSanpham" />
+            </Principal>
+            <Dependent Role="ThongKe">
+              <PropertyRef Name="IDSanpham" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DoAnPM_LTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Category" EntityType="Self.Category" />
+          <EntitySet Name="CTDonHang" EntityType="Self.CTDonHang" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="DonHang" EntityType="Self.DonHang" />
+          <EntitySet Name="Favorite" EntityType="Self.Favorite" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ThongKe" EntityType="Self.ThongKe" />
+          <AssociationSet Name="pk_phanloai_sanpham" Association="Self.pk_phanloai_sanpham">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctdh_donhang" Association="Self.fk_ctdh_donhang">
+            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="CTDonHang" EntitySet="CTDonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_ctdh_sanpham" Association="Self.fk_ctdh_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="CTDonHang" EntitySet="CTDonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_donhang_khachhang" Association="Self.fk_donhang_khachhang">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="DonHang" EntitySet="DonHang" />
+          </AssociationSet>
+          <AssociationSet Name="fk_yeuthich_user" Association="Self.fk_yeuthich_user">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_thongke_donhang" Association="Self.fk_thongke_donhang">
+            <End Role="DonHang" EntitySet="DonHang" />
+            <End Role="ThongKe" EntitySet="ThongKe" />
+          </AssociationSet>
+          <AssociationSet Name="fk_yeuthich_sanpham" Association="Self.fk_yeuthich_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Favorite" EntitySet="Favorite" />
+          </AssociationSet>
+          <AssociationSet Name="fk_thongke_sanpham" Association="Self.fk_thongke_sanpham">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ThongKe" EntitySet="ThongKe" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DoAnPM_LTModelStoreContainer" CdmEntityContainer="DoAnPM_LTEntities">
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="IDPhanloai" ColumnName="IDPhanloai" />
+                <ScalarProperty Name="TenPhanLoai" ColumnName="TenPhanLoai" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CTDonHang">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.CTDonHang">
+              <MappingFragment StoreEntitySet="CTDonHang">
+                <ScalarProperty Name="IDCTDonHang" ColumnName="IDCTDonHang" />
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="IDSanpham" ColumnName="IDSanpham" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="Soluong" ColumnName="Soluong" />
+                <ScalarProperty Name="GiaTien" ColumnName="GiaTien" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DonHang">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.DonHang">
+              <MappingFragment StoreEntitySet="DonHang">
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+                <ScalarProperty Name="NgayBan" ColumnName="NgayBan" />
+                <ScalarProperty Name="TongThanhTien" ColumnName="TongThanhTien" />
+                <ScalarProperty Name="TienTraLai" ColumnName="TienTraLai" />
+                <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+                <ScalarProperty Name="NgayGiao" ColumnName="NgayGiao" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="DCGiao" ColumnName="DCGiao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favorite">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.Favorite">
+              <MappingFragment StoreEntitySet="Favorite">
+                <ScalarProperty Name="IDYeuThich" ColumnName="IDYeuThich" />
+                <ScalarProperty Name="IDSanPham" ColumnName="IDSanPham" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+                <ScalarProperty Name="NgayThem" ColumnName="NgayThem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="IDSanpham" ColumnName="IDSanpham" />
+                <ScalarProperty Name="IDPhanloai" ColumnName="IDPhanloai" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="TongSoLuong" ColumnName="TongSoLuong" />
+                <ScalarProperty Name="GiaBanDau" ColumnName="GiaBanDau" />
+                <ScalarProperty Name="GiaSP" ColumnName="GiaSP" />
+                <ScalarProperty Name="AnhMinhHoa" ColumnName="AnhMinhHoa" />
+                <ScalarProperty Name="AnhMinhHoa1" ColumnName="AnhMinhHoa1" />
+                <ScalarProperty Name="AnhMoTa1" ColumnName="AnhMoTa1" />
+                <ScalarProperty Name="AnhMoTa2" ColumnName="AnhMoTa2" />
+                <ScalarProperty Name="AnhMoTa3" ColumnName="AnhMoTa3" />
+                <ScalarProperty Name="AnhMoTa6" ColumnName="AnhMoTa6" />
+                <ScalarProperty Name="MoTaSP" ColumnName="MoTaSP" />
+                <ScalarProperty Name="LoaiMay" ColumnName="LoaiMay" />
+                <ScalarProperty Name="DuongKinh" ColumnName="DuongKinh" />
+                <ScalarProperty Name="Mau" ColumnName="Mau" />
+                <ScalarProperty Name="ChatLieuDay" ColumnName="ChatLieuDay" />
+                <ScalarProperty Name="DoChiuNuoc" ColumnName="DoChiuNuoc" />
+                <ScalarProperty Name="DoDay" ColumnName="DoDay" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongKe">
+            <EntityTypeMapping TypeName="DoAnPM_LTModel.ThongKe">
+              <MappingFragment StoreEntitySet="ThongKe">
+                <ScalarProperty Name="IDThongKe" ColumnName="IDThongKe" />
+                <ScalarProperty Name="IDSanpham" ColumnName="IDSanpham" />
+                <ScalarProperty Name="IDDonHang" ColumnName="IDDonHang" />
+                <ScalarProperty Name="DoanhSo" ColumnName="DoanhSo" />
+                <ScalarProperty Name="NgayThongKe" ColumnName="NgayThongKe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

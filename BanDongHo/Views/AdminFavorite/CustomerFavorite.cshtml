@@ -1,0 +1,13 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+@model CustomerFavoriteViewModel
+@using BanDongHo.Models
+<h2>Yêu thích của khách hàng</h2>
+<p><strong>Tên khách hàng:</strong> @Model.Customer.TenKH</p>
+<p><strong>Sản phẩm:</strong> @Model.Favorite.IDSanPham</p>
+<p><strong>Ngày thêm vào yêu thích:</strong> @Model.Favorite.NgayThem.ToString()</p>
+<!-- Hiển thị các thông tin khác về yêu thích và khách hàng (User) -->

@@ -1,0 +1,288 @@
+﻿
+@using BanDongHo.Models
+@{ 
+    DonHang dh = (DonHang)Session["DonHang"];
+}
+@{
+    var kh = Session["TaiKhoan"] as BanDongHo.Models.Customer;
+
+}
+@{
+    Cart cart = Session["Cart"] as Cart;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    <link rel="stylesheet" href="~/Style/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Style/slide.css">
+    <link rel="stylesheet" href="~/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/owl.theme.default.min.css">
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <style>
+        .login_btn {
+            position: relative;
+        }
+
+        .sub-menu {
+            display: none;
+        }
+        .sub-menu {
+            display: none;
+        }
+
+        .login_btn:hover .sub-menu {
+            display: block;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            top: 60px;
+            z-index: 1;
+            width: 165px;
+            border-radius: 5px;
+            box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0 0 0 2px rgb(255,255,255), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+        }
+
+        .sub-menu:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: -120px;
+            top: -40px;
+            width: 150px;
+            height: 100px;
+        }
+            .sub-menu-dm{
+                display:none;
+            }
+
+        
+
+        .category_icon:hover .sub-menu-dm {
+            display: block;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ddd;
+            top: 75px;
+            z-index: 1;
+            width: 300px;
+            height: 225px;
+            border-radius: 5px;
+            box-shadow: inset 0 -3em 3em rgba(0,0,0,0.1), 0 0 0 2px rgb(255,255,255), 0.3em 0.3em 1em rgba(0,0,0,0.3);
+        }
+
+        .sub-menu-dm:after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+            left: 0px;
+            top: -10px;
+            width: 150px;
+            height: 20px;
+        }
+        .sub-menu a:hover{
+            text-decoration:none;
+            list-style:none;
+
+        }
+        
+    </style>
+    <div class="header">
+        <div class="container">
+
+            <div class="row">
+                <div class="logo">
+                    <a href="@Url.Action("Index","HomePage")">
+                        <img class="logo_image" src="~/Image/logo-no-background.png" alt="">
+                    </a>
+                </div>
+                <a style="text-decoration: none;list-style: none;color: #000;" class="category">
+                    <div class="category_icon">
+                        <i style="margin-right:10px;margin-top:5px" class="fa-solid fa-bars"></i>
+                        <span>Danh mục</span>
+                        <div class="sub-menu-dm">
+                            <a style="margin-right: 60px; margin-top: 10px; float: left;margin-left:8px;font-size:15px;display:flex " class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nam" })">
+                                <img style="width:100px;height:60px" src="~/Image/dh_nam_6_1.jpg" alt="Alternate Text" />
+                                <span style="margin-top: 15px; margin-left: 20px; color: black">Đồng hồ nam</span>
+                            </a>
+                            <a style="margin-right: 20px; margin-top: 10px; float: left; margin-left: 8px; font-size: 15px; display: flex " class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nữ" })">
+                                <img style="width:100px;height:60px" src="~/Image/dh_nu1_1.jpg" alt="Alternate Text" />
+                                <span style="margin-top: 15px; margin-left: 20px; color: black">Đồng hồ nữ</span>
+                            </a>
+                            <a style="margin-right: 20px; margin-top: 10px; float: left; margin-left: 8px; font-size: 15px; display: flex " class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Đôi" })">
+                                <img style="width:100px;height:60px" src="~/Image/dh_doi_6_1.jpg" alt="Alternate Text" />
+                                <span style="margin-top: 15px; margin-left: 20px;color:black">Đồng hồ đôi</span>
+                            </a>
+
+                        </div>
+                    </div>
+
+
+                </a>
+                <!--  -->
+
+                <div class="search-input">
+                    <form action="/TimKiem/KQTimKiem" method="post">
+                        <input name="txtTimKiem" class="form_search " type="search" placeholder="Tìm kiếm" aria-label="Search">
+
+                    </form>
+                </div>
+
+                <div class="favorite">
+                    <a href="@Url.Action("Index","Favorite")">
+
+                        <div class="favorite_icon">
+                            <i style="font-size: 2.4rem;color:white;" class="fa-solid fa-store"></i>
+                            <div class="favorite_name">
+                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Cửa hàng</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="favorite">
+                    <a href="@Url.Action("Index","Favorite")">
+
+                        <div class="favorite_icon">
+                            <i style="font-size: 2.4rem;color:white;" class="fa-solid fa-heart"></i>
+                            <div class="favorite_name">
+                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Yêu thích</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                @if (cart != null)
+                {
+
+                    <div class="item cart_btn">
+                        <a href="@Url.Action("Index","Cart")">
+                            <div style="display: inline-block; position: relative; cursor: pointer" class="header__cart-wrap">
+
+                                <i style="font-size: 2.4rem; color: white;" class="fa-solid fa-cart-flatbed-suitcase cart_icon"></i>
+                                <span style=" position: absolute; border-radius: 50%; background-color: #fdd835; top: -20%;
+                                right: -8px; width: 25px; height: 20px; color: #000;
+                                text-align: center; line-height: 22px; padding: 0 4px;" class="header__cart-notice">
+                                    @cart.Total_quantity()
+                                </span>
+                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif;">Giỏ hàng</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+                @if (kh != null)
+                {
+                    <div class="login">
+                        <div class="login_btn">
+                            <a style="text-decoration: none; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("Index","CustomerUpdate")" class="login_btn">
+                                <i style="color:white" class="fa-solid fa-user login_icon"></i>
+                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif;font-size:13px">@kh.TenKH</p>
+
+                            </a>
+                            <div class="sub-menu">
+                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("LogOut", "LoginRegister")"><i style="margin-right:17px" class="fa-solid fa-right-to-bracket"></i>Đăng xuất</a>
+                                <a style="float: left; color: black; margin-right: 20px; font-family: Be Vietnam Pro, sans-serif; " href="@Url.Action("TinhTrangDonHang","QlyNhapHang")"><i style="margin-right:17px" class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng</a>
+                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("Index", "CustomerUpdate")"><i style="margin-right:17px" class="fa-solid fa-user"></i>Cá nhân</a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                else
+                {
+                    <div class="login">
+                        <a style="text-decoration: none;" href="@Url.Action("Login","LoginRegister")" class="login_btn">
+                            <i style="color:white" class="fa-solid fa-user login_icon"></i>
+                            <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; font-size: 13px ">Đăng nhập</p>
+                        </a>
+                    </div>
+                }
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <footer>
+        <div style="position: relative;margin:0;padding:0;" class="footer">
+            <div style="height:300px;margin-top:30px" class="footer_container">
+                <div class="footer_items">
+                    <h6 style="color:white">Địa chỉ chúng tôi</h6>
+                    <ul style="color:white">
+                        <li><i class="fa-solid fa-location-dot"></i> Địa chỉ : 828 Sư Vạn Hạnh, phường 12, Quận 10</li>
+                        
+                        <li> <i class="fa-solid fa-envelope"></i> Email : contact@st.huflit.edu.vn</li>
+
+                    </ul>
+                </div>
+                <div class="footer_items">
+                    <h6 style="color:white">Về chúng tôi</h6>
+                    <ul>
+                        <li><a style="color:white" href="">Giới thiệu về chúng tôi</a></li>
+                        <li><a style="color:white" href="">Chính sách bảo mật</a></li>
+                        <li><a style="color:white" href="">Chính sách sử dụng</a></li>
+
+                    </ul>
+                </div>
+                <div class="footer_items">
+                    <h6 style="color:white">Kết nối với chúng tôi</h6>
+                    <div class="connect_content">
+                        <div class="connect_content_items">
+                            <a href="">
+                                <img class="connect_content_items_img" src="~/Image/cn_fb.png" alt="">
+                            </a>
+                        </div>
+                        <div class="connect_content_items">
+                            <a href="">
+                                <img class="connect_content_items_img" src="~/Image/cn_ytb.png" alt="">
+                            </a>
+                        </div>
+                        <div class="connect_content_items">
+                            <a href="">
+                                <img class="connect_content_items_img" src="~/Image/twitter.png" alt="">
+                            </a>
+                        </div>
+                        <div class="connect_content_items">
+                            <a href="">
+                                <img class="connect_content_items_img" src="~/Image/instagram.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+<script>
+
+    document.getElementById("searchBox").addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            let keyword = this.value;
+            if (keyword.trim() != "") {
+                window.location = '/HomePage/Index?SearchString=' + keyword;
+            }
+        }
+    });
+</script>

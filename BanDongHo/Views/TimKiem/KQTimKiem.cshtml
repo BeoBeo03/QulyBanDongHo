@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BanDongHo.Models.Product>
+@using BanDongHo.Models;
+@{ var formatMoney = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");}
+@{
+    ViewBag.Title = "KQTimKiem";
+}
+
+<link rel="stylesheet" href="~/Style/style.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+
+<div class="content">
+
+    <div class="container_content">
+
+        <div class="brand">
+            <h5>DENIEL WELLINGTON</h5>
+            <div style="display:flex" class="brand_content">
+                <div style="margin-right:10px;" class="brand_content_img">
+                    <img style="width:280px;height:220px;" src="~/Image/classic-petite_1646975680.jpg" alt="Alternate Text" />
+                    <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3;text-align:center; color:black;">Daniel Wellington Iconic Link</div>
+                </div>
+                <div style="margin-right:10px;" class="brand_content_img">
+                    <img style="width:280px;height:220px;" src="~/Image/classic_1646974881.jpg" alt="Alternate Text" />
+                    <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Classic</div>
+                </div>
+                <div style="margin-right:10px;" class="brand_content_img">
+                    <img style="width:280px;height:220px;" src="~/Image/dw-iconic-link_1646975663 (1).jpg" alt="Alternate Text" />
+                    <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Classic Petite</div>
+                </div>
+                <div style="margin-right:10px;" class="brand_content_img">
+                    <img style="width:280px;height:220px;" src="~/Image/dw_1646975652.jpg" alt="Alternate Text" />
+                    <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Quadro</div>
+                </div>
+            </div>
+            <div style=" margin-bottom: 20px; margin-top: 25px;width:1100px">
+                <p style="font-size: 14px; font-style: italic; line-height: 24px;">
+                    Tình yêu luôn là thứ cảm xúc đặc biệt hơn bao giờ hết. Đó là sự gắn kết hai trái tim nếm trải mọi cung bậc cảm xúc: đau khổ, buồn, vui, hạnh phúc để có một cái kết viên mãn. Đồng hành trên chặng đường yêu không thể thiếu đi đồng hồ đôi -
+                    vật chứng tình yêu vừa thiết thực vừa ý nghĩa.<strong>Đồng hồ đôi (đồng hồ cặp)</strong>  với đầy đủ kiểu dáng từ đồng hồ cặp thiết kế mỏng nhẹ, thanh lịch, sang trọng hoặc cá tính, thời trang…sẽ đáp ứng mọi sở thích của đôi tình nhân.
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <div class="container_list_items">
+        <div style="margin-left: 170px;">
+            <div style="margin: 20px 0;" class="product_all">
+
+                <div style="font-size: 30px;text-align: center;" class="">Kết quả tìm kiếm: @ViewBag.ThongBao1@ViewBag.ThongBao2</div>
+            </div>
+            <div style="display: flex;flex-wrap: wrap;" class="container_slider_product">
+                @foreach (var item in Model)
+                {
+                    <div style="margin-top: 10px;height:390px;" class="element">
+                        <a href="@Url.Action("Index","Product",new { id = item.IDSanpham })">
+                            <div style="padding-left: 20px;" class="card">
+                                <img style="width: 195px;height:231px;" class="card-img-top" src="~/Image/@item.AnhMinhHoa" alt="Card image cap">
+                                <div style="margin-bottom:4px;" class="overlay">
+                                    <img style="height: 235px;border-radius: 15px 15px 0 0;width: 235px;" class="overlay_img" src="~/Image/@item.AnhMoTa2" alt="">
+                                </div>
+                                <div class="card-body">
+                                    <div style="margin-top:13px" class="product-name">
+                                        <p class="card-text">@item.TenSP, @item.DuongKinh</p>
+                                    </div>
+                                    <div style="display:flex;" class="card-badge">
+                                        <div style="text-decoration:line-through;color:gray;margin-top:16px" class="card-badge-info-items">
+                                            @String.Format(formatMoney, "{0:c0}", item.GiaBanDau)
+                                        </div>
+                                        <div style="margin-top: 40px; color: black; font-weight: 600; margin-top: 16px">  @String.Format(formatMoney, "{0:c0}", item.GiaSP)</div>
+                                    </div>
+
+                                    <a href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = item.IDSanpham })" class="love-product">
+                                        @{
+                                            DoAnPM_LTEntities db = new DoAnPM_LTEntities();
+                                            // Kiểm tra xem sản phẩm đã có trong bảng Favorite hay chưa
+                                            if (Session["TaiKhoan"] != null)
+                                            {
+                                                var kh = (Customer)Session["TaiKhoan"];
+                                                var isFavorited = db.Favorite.Any(f => f.IDSanPham == item.IDSanpham && f.IDUser == kh.IDUser);
+                                                string heartIconClass = isFavorited ? "fa-solid fa-heart" : "fa-regular fa-heart";
+                                                <i class="@heartIconClass"></i>
+                                            }
+                                        }
+                                    </a>
+                                </div>
+                            </div>
+                        </a>
+
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+
