@@ -95,9 +95,65 @@
             list-style:none;
 
         }
+        .footer_items h6{
+
+        }
         
+        .footer_container {
+            background-color: #2d323d !important;
+            justify-content: space-between !important;
+        }
+        .footer_items h6{
+            margin-top:40px;
+            margin-bottom:30px;
+            font-size:25px !important;
+        }
+        .footer_items ul li {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #98a2aa;
+            cursor:pointer
+        }
+        .footer_items ul li:hover{
+            color:#fff;
+        }
+        .line{
+            height:40px;
+            width:5px;
+            border:1px solid #000;
+            background-color:#fff;
+        }
+        .line span{
+            color:#fff;
+            font-size:20px;
+            padding-left:20px;
+        }
+        .footer_items:first-child{
+            margin-left:150px !important;
+        }
+        .footer_items:last-child {
+            margin-right: 150px !important;
+        }
+        .connect_content{
+            margin-bottom:40px;
+        }
+        .contact_input{
+            
+        }
+        .contact_input span{
+            display:block;
+            color:#fff;
+            font-size:18px;
+            margin-bottom:20px;
+        }
+        .contact_input input{
+            width:300px;
+            height:50px;
+            border-radius:20px;
+            padding-left:20px;
+        }
     </style>
-    <div class="header">
+    <div style="background-color: #47484b" class="header">
         <div class="container">
 
             <div class="row">
@@ -218,27 +274,44 @@
 
     <footer>
         <div style="position: relative;margin:0;padding:0;" class="footer">
-            <div style="height:300px;margin-top:30px" class="footer_container">
+            <div style="height:350px;margin-top:30px" class="footer_container">
                 <div class="footer_items">
-                    <h6 style="color:white">Địa chỉ chúng tôi</h6>
+                    <h6 style="color:white">Menu</h6>
                     <ul style="color:white">
-                        <li><i class="fa-solid fa-location-dot"></i> Địa chỉ : 828 Sư Vạn Hạnh, phường 12, Quận 10</li>
-                        
-                        <li> <i class="fa-solid fa-envelope"></i> Email : contact@st.huflit.edu.vn</li>
+                        <li> Home</li>
+
+                        <li>  About</li>
+                        <li>  Login</li>
 
                     </ul>
+                    <div style="color: #98a2aa;font-size:16px;margin-top:40px">© 2020 Selling Watch Websites</div>
                 </div>
                 <div class="footer_items">
-                    <h6 style="color:white">Về chúng tôi</h6>
+                    <h6 style="color:white">About me</h6>
                     <ul>
-                        <li><a style="color:white" href="">Giới thiệu về chúng tôi</a></li>
-                        <li><a style="color:white" href="">Chính sách bảo mật</a></li>
-                        <li><a style="color:white" href="">Chính sách sử dụng</a></li>
+                        <li>About Us</li>
+                        <li>Privacy Policy</li>
+                        <li>
+                            Usage policy
+                        </li>
 
                     </ul>
                 </div>
                 <div class="footer_items">
-                    <h6 style="color:white">Kết nối với chúng tôi</h6>
+                    <h6 style="color:white">Contact</h6>
+                    <ul>
+                        <li>Contact Us</li>
+                        <li></li>
+                        <li>828 Su Van Hanh</li>
+
+
+                    </ul>
+                    <div class="line">
+                        <span>hello@buywatch.com</span>
+                    </div>
+                </div>
+                <div class="footer_items">
+                    <h6 style="color:white">Follow us</h6>
                     <div class="connect_content">
                         <div class="connect_content_items">
                             <a href="">
@@ -261,9 +334,15 @@
                             </a>
                         </div>
                     </div>
-
+                    <div class="contact_input">
+                        <span>Subscribe For Updates & Insights</span>
+                        <input type="type" name="name" value="" placeholder="Your email"/>
+                        <button style="border-radius: 50%; width: 50px; height: 50px; background: #8dd816;"><i style="font-size:20px" class="fa-solid fa-caret-right"></i></button>
+                    </div>
 
                 </div>
+
+            
             </div>
         </div>
     </footer>

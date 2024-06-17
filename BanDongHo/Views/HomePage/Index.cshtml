@@ -197,13 +197,47 @@
             margin-bottom: 50px;
             border: none;
         }
+        .banner_nav{
+            width:100%;
+        }
+        .banner_content{
+
+        }
+        .banner_content_img{
+            position:relative;
+
+        }
+        .banner_title{
+            position:absolute;
+            top:40%;
+            left:5%;
+        }
+            .banner_title span {
+                font-size: 30px;
+                color: #edb215;
+                font-weight:600;
+            }
+        .banner_content_img img {
+            width: 100%;
+        }
+        .banner_btn button{
+            margin-top:50px;
+            height:50px;
+            width:200px;
+            border-radius:10px;
+            padding:10px;
+            border:none;
+            background-color:#000;
+            color:#fff;
+            font-weight:600;
+        }
     </style>
 
     <!-- end header -->
     <!-- navbar -->
-    </div>
+   
 
-    <div class="slider">
+    <!--<div class="slider">
         <div class="container_slider">
 
             <div id="mySlide1" class="mySlides fade">
@@ -222,22 +256,22 @@
                 <div class="numbertext">3 / 3</div>
                 <img src="~/Image/image003_2.jpg" style="width:100%">
                 <div class="text">Daniel Wellington</div>
-            </div>
+            </div>-->
             <!-- Next and previous buttons -->
-            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <!--<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
             <a class="next" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        <br>
+        <br>-->
 
         <!-- The dots/circles -->
 
 
-    </div>
+    <!--</div>
     <div style="text-align:center">
         <span id="dot1" class="dot" onclick="currentSlide(1)"></span>
         <span id="dot2" class="dot" onclick="currentSlide(2)"></span>
         <span id="dot3" class="dot" onclick="currentSlide(3)"></span>
-    </div>
+    </div>-->
     <!-- <div class="slider_img">
         <div class="slider_items_img">
             <img class="slider_items_img_right" src="/Image/banner5.png" alt="">
@@ -246,10 +280,30 @@
             <img class="slider_items_img_right" src="/Image/banner6.png" alt="">
         </div>
     </div> -->
-    </div>
+    
 
     <!-- end navbar -->
     <!-- Product -->
+    <div class="banner_nav">
+        <div class="banner_content">
+            <div class="banner_content_img">
+                <img src="~/Image/bannerwatch.png" alt="Alternate Text" />
+            </div>
+            <div class="banner_title">
+                <div class="banner_title_item1">
+                    <span>QUÀ TẶNG Ý NGHĨA</span>
+                </div>
+                <div class="banner_title_item1">
+                    <span>MUA SẮP NHIỀU, TIẾT KIỆM NHIỀU</span>
+                </div>
+                <div class="banner_btn">
+                    <button>MUA NGAY</button>
+                </div>
+            </div>   
+            
+
+        </div>
+    </div>
     <div class="content">
 
         <div class="container_content">
@@ -257,22 +311,22 @@
             <div class="brand">
                 <h5>DENIEL WELLINGTON</h5>
                 <div style="display:flex" class="brand_content">
-                    <div style="margin-right:10px;" class="brand_content_img">
+                    <a href="@Url.Action("Index","Product",new { id = 6})" style="margin-right:10px;" class="brand_content_img">
                         <img style="width:280px;height:220px;" src="~/Image/classic-petite_1646975680.jpg" alt="Alternate Text" />
                         <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3;text-align:center; color:black;">Daniel Wellington Iconic Link</div>
-                    </div>
-                    <div style="margin-right:10px;" class="brand_content_img">
+                    </a>
+                    <a href="@Url.Action("Index","Product",new { id = 6})" style="margin-right:10px;" class="brand_content_img">
                         <img style="width:280px;height:220px;" src="~/Image/classic_1646974881.jpg" alt="Alternate Text" />
                         <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Classic</div>
-                    </div>
-                    <div style="margin-right:10px;" class="brand_content_img">
+                    </a>
+                    <a href="@Url.Action("Index","Product",new { id = 6})" style="margin-right:10px;" class="brand_content_img">
                         <img style="width:280px;height:220px;" src="~/Image/dw-iconic-link_1646975663 (1).jpg" alt="Alternate Text" />
                         <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Classic Petite</div>
-                    </div>
-                    <div style="margin-right:10px;" class="brand_content_img">
+                    </a>
+                    <a href="@Url.Action("Index","Product",new { id = 6})" style="margin-right:10px;" class="brand_content_img">
                         <img style="width:280px;height:220px;" src="~/Image/dw_1646975652.jpg" alt="Alternate Text" />
                         <div style="padding: 10px; border: 1px solid #a29e9e; background-color: #b8b3b3; text-align: center; color: black;">Daniel Wellington Quadro</div>
-                    </div>
+                    </a>
                 </div>
                 <div style=" margin-bottom: 20px; margin-top: 25px;width:1100px">
                     <p style="font-size: 14px; font-style: italic; line-height: 24px; font-family: Be Vietnam Pro, sans-serif;">
@@ -352,7 +406,7 @@
             <div style="margin: 20px 0;" class="product_all">
                 <div style="font-size: 30px;text-align: center;" class="">TẤT CẢ SẢN PHẨM</div>
             </div>
-            <div style="display: flex;flex-wrap: wrap;" class="container_slider_product">
+            <div style="display: flex;flex-wrap: wrap;margin-left:60px" class="container_slider_product">
                 @foreach (var item in Model)
                 {
                     <div style="margin-top: 10px;height:390px;" class="element">
@@ -363,7 +417,7 @@
                                 @if (item.TongSoLuong == 0)
                                 {
                                     <!-- Hiển thị panel nhỏ khi số lượng tồn = 0 -->
-                                    <div style=" text-align: center; border-radius: 0 15px 0 15px; margin-left: 130px; position: absolute; width: 85px; height: 26px; background: #f11b0c;" class="sold-out-panel">
+                                    <div style=" text-align: center; margin-left: 130px; position: absolute; width: 85px; height: 26px; background: #f11b0c;" class="sold-out-panel">
                                         <p style="margin-top:3px" class="sold-out-text">Hết hàng</p>
                                     </div>
                                 }

@@ -217,6 +217,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Image\banner-classic.jpg" />
+    <Content Include="Image\bannerwatch.png" />
     <Content Include="Image\banner_1.jpg" />
     <Content Include="Image\banner_2.jpg" />
     <Content Include="Image\banner_3.jpg" />
