@@ -117,46 +117,90 @@
             .homepage-card:hover p {
                 opacity: 1;
             }
+            @*contact*@
+        .content_news {
+            background-color: transparent;
+            width: auto;
+            min-width: 0;
+            max-width: none;
+            height: auto;
+            margin: 0 auto;
+            padding: 20px 3.75rem;
+            text-align: center;
+        }
+
+        .content_news_heading {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: relative;
+        }
+
+            .content_news_heading p:first-child {
+                color: #D291BC;
+                letter-spacing: .05em;
+                -webkit-text-stroke-color: #395542;
+                background-color: transparent;
+                margin-top: 50px;
+                margin-bottom: 1rem;
+                font-family: Utopiastd, sans-serif;
+                font-size: 36px;
+                font-weight: 600;
+            }
+
+            .content_news_heading p:last-child {
+                font-size: 20px;
+                color: #957DAD;
+                margin-bottom: 20px;
+                font-family: Gotham, sans-serif;
+                font-size: 20px;
+                line-height: 2em;
+            }
+
+        .content_news_line {
+            width: 300px;
+            height: 5px;
+            background-color: #FEC8D8;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .content_news_input {
+            text-align: center;
+        }
+
+            .content_news_input input {
+                border-width: 1px;
+                border-color: #D291BC;
+                width: 1000px;
+                height: 40px;
+                border-radius: 8px;
+                margin: 15px;
+                padding: 10px;
+                font-size: 16px;
+            }
+
+                .content_news_input input:active {
+                    border: 1px solid #fff;
+                }
+
+        .content_news_btn {
+            width: 200px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: #fdbbcf;
+            margin-top: 40px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 50px;
+            border: none;
+        }
     </style>
 
     <!-- end header -->
     <!-- navbar -->
-    <div class="navbar">
-        <div class="container_navbar">
-            <div class="row_navbar">
-
-                <div class="nav_content">
-                    @*<li class="nav-item">
-
-                            <a class="nav-link active" aria-current="page" href="#">Thương hiệu</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">CASIO</a></li>
-                                <li><a href="#">SEIKO</a></li>
-                                <li><a href="#">Calvin Klei</a></li>
-                                <li><a href="#">Deniel Wellington</a></li>
-
-                            </ul>
-                        </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nam" })">Đồng hồ nam</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nữ" })">Đồng hồ nữ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Đôi" })">Đồng hồ đôi</a>
-                    </li>
-                    <li style="width:201px!important;" class="nav-item">
-                        <a class="nav-link" href="news-category.html">Đồng hồ treo tường</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("GioiThieu","HomePage")"><i class="ri-profile-line"></i>Giới thiệu</a>
-                    </li>
-
-                </div>
-
-            </div>
-        </div>
     </div>
 
     <div class="slider">
@@ -231,7 +275,7 @@
                     </div>
                 </div>
                 <div style=" margin-bottom: 20px; margin-top: 25px;width:1100px">
-                    <p style="font-size: 14px; font-style: italic; line-height: 24px;">
+                    <p style="font-size: 14px; font-style: italic; line-height: 24px; font-family: Be Vietnam Pro, sans-serif;">
                         Tình yêu luôn là thứ cảm xúc đặc biệt hơn bao giờ hết. Đó là sự gắn kết hai trái tim nếm trải mọi cung bậc cảm xúc: đau khổ, buồn, vui, hạnh phúc để có một cái kết viên mãn. Đồng hành trên chặng đường yêu không thể thiếu đi đồng hồ đôi -
                         vật chứng tình yêu vừa thiết thực vừa ý nghĩa.<strong>Đồng hồ đôi (đồng hồ cặp)</strong>  với đầy đủ kiểu dáng từ đồng hồ cặp thiết kế mỏng nhẹ, thanh lịch, sang trọng hoặc cá tính, thời trang…sẽ đáp ứng mọi sở thích của đôi tình nhân.
                     </p>
@@ -240,7 +284,7 @@
             </div>
             <div style="background: linear-gradient(rgb(0, 0, 0), rgb(178 177 171)) 0% 0% / cover;" class="product_list category_product">
                 <div class="product_list_head">
-                    <a style="text-decoration: none;list-style: none;" href="">
+                    <a style="text-decoration: none; list-style: none; font-family: Be Vietnam Pro, sans-serif;" href="">
                         <h3>CÁC MẪU NỔI BẬT DANIEL WELLINGTON</h3>
                     </a>
                 </div>
@@ -268,20 +312,21 @@
                                                 <div style="margin-top: 24px; color: black; font-weight: 600; margin-top: 16px">  @String.Format(formatMoney, "{0:c0}", item.GiaSP)</div>
                                             </div>
 
-                                            <a href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = item.IDSanpham })" class="love-product">
-                                                @{
-                                                    DoAnPM_LTEntities db = new DoAnPM_LTEntities();
-                                                    // Kiểm tra xem sản phẩm đã có trong bảng Favorite hay chưa
-                                                    if (Session["TaiKhoan"] != null)
-                                                    {
-                                                        var kh = (Customer)Session["TaiKhoan"];
-                                                        var isFavorited = db.Favorite.Any(f => f.IDSanPham == item.IDSanpham && f.IDUser == kh.IDUser);
-                                                        string heartIconClass = isFavorited ? "fa-solid fa-heart favorite-icon-red" : "fa-regular fa-heart";
-                                                        <i class="@heartIconClass"></i>
+                                            <form action="@Url.Action("ThemMucYeuThich", "Favorite")" method="post" id="favoriteForm-@item.IDSanpham">
+                                                <input type="hidden" name="IDSanPham" value="@item.IDSanpham" />
+                                                <button style="background: none; border: none; padding: 0;" type="submit" class="love-product">
+                                                    @{
+                                                        // Kiểm tra xem sản phẩm đã có trong bảng Favorite hay chưa
+                                                        if (Session["TaiKhoan"] != null)
+                                                        {
+                                                            var kh = (Customer)Session["TaiKhoan"];
+                                                            var isFavorited = DongHoDatabase.Instance.Favorite.Any(f => f.IDSanPham == item.IDSanpham && f.IDUser == kh.IDUser);
+                                                            string heartIconClass = isFavorited ? "fa-solid fa-heart favorite-icon-red" : "fa-regular fa-heart";
+                                                            <i class="@heartIconClass"></i>
+                                                        }
                                                     }
-                                                }
-
-                                            </a>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
 
@@ -337,19 +382,22 @@
                                         <div style="margin-top: 40px; color: black; font-weight: 600; margin-top: 16px">  @String.Format(formatMoney, "{0:c0}", item.GiaSP)</div>
                                     </div>
 
-                                    <a href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = item.IDSanpham })" class="love-product">
-                                        @{
-                                            DoAnPM_LTEntities db = new DoAnPM_LTEntities();
-                                            // Kiểm tra xem sản phẩm đã có trong bảng Favorite hay chưa
-                                            if (Session["TaiKhoan"] != null)
-                                            {
-                                                var kh = (Customer)Session["TaiKhoan"];
-                                                var isFavorited = db.Favorite.Any(f => f.IDSanPham == item.IDSanpham && f.IDUser == kh.IDUser);
-                                                string heartIconClass = isFavorited ? "fa-solid fa-heart favorite-icon-red" : "fa-regular fa-heart";
-                                                <i class="@heartIconClass"></i>
+                                    <form action="@Url.Action("ThemMucYeuThich", "Favorite")" method="post" id="favoriteForm-@item.IDSanpham">
+                                        <input type="hidden" name="IDSanPham" value="@item.IDSanpham" />
+                                        <button style="background: none; border: none; padding: 0;" type="submit" class="love-product">
+                                            @{
+                                                // Kiểm tra xem sản phẩm đã có trong bảng Favorite hay chưa
+                                                if (Session["TaiKhoan"] != null)
+                                                {
+                                                    var kh = (Customer)Session["TaiKhoan"];
+                                                    var isFavorited = DongHoDatabase.Instance.Favorite.Any(f => f.IDSanPham == item.IDSanpham && f.IDUser == kh.IDUser);
+                                                    string heartIconClass = isFavorited ? "fa-solid fa-heart favorite-icon-red" : "fa-regular fa-heart";
+                                                    <i class="@heartIconClass"></i>
+                                                }
                                             }
-                                        }
-                                    </a>
+                                        </button>
+                                    </form>
+
                                 </div>
                             </div>
                         </a>
@@ -374,7 +422,7 @@
 
             <div style="width: 500px; font-size: 16px; margin-top: 100px; letter-spacing: 1px; " class="inner-wrapper__content">
                 <h2>Dành cho cặp đôi</h2>
-                <span style="font-family: DWFutura, sans-serif">
+                <span style="font-family: Be Vietnam Pro, sans-serif;">
                     Dòng đồng hồ đôi Daniel Wellington luôn thể hiện sự tinh tế và đẳng cấp, là món quà tuyệt vời để tặng người yêu hoặc bạn đời trong những dịp quan trọng như kỷ niệm,
                     ngày Valentine, hoặc cơ hội đặc biệt khác.
                 </span>
@@ -391,7 +439,7 @@
             <img style="width:600px;height:400px;margin-right:50px" src="~/Image/banner_2.jpg" alt="Alternate Text" />
             <div style="width: 500px; font-size: 16px; margin-top: 100px; letter-spacing: 1px; " class="inner-wrapper__content">
                 <h2>Thiết kế</h2>
-                <span style="font-family: DWFutura, sans-serif">
+                <span style="font-family: Be Vietnam Pro, sans-serif;">
                     Với thiết kế mỏng nhẹ, mặt đồ trắng sáng và dây đeo da tinh xảo, đồng hồ này đã thu hút người yêu thời trang trên khắp thế giới. Được tạo ra bởi một thương hiệu Thụy Điển,
                     Daniel Wellington thể hiện sự tinh tế và phong cách cổ điển trong thiết kế đồng hồ.
                 </span>
@@ -417,6 +465,28 @@
             <p>Daniel Wellington</p>
         </section>
     </div>
+    
+    <div class="content_news">
+        <div class="content_news_heading">
+            <p>Join Our Newsletter</p>
+            <div class="content_news_line"></div>
+            <p>Stay up to date on the latest news and openings, menu items and more.</p>
+        </div>
+        <div class="content_news_input">
+            <form id="newsletter_form">
+                <input type="text" id="first_name" placeholder="FIRST NAME" required>
+                <input type="text" id="last_name" placeholder="LAST NAME" required>
+                <input type="email" id="email" placeholder="EMAIL" required>
+                <button style="margin-left: 350px;margin-right: 350px;" type="submit" class="content_news_btn">SUBCRIBE</button>
+            </form>
+        </div>
+
+        <div id="success_message" style="display: none;"><img src="./img/check.jpg" alt="">Submitted successfully!</div>
+    </div>
+    <div class="map">
+        <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0761132220223!2d106.60752727480535!3d10.805482489345025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752bed92698963%3A0xc777e5dda33737e2!2zQ2h1bmcgY8awIFPGoW4gS-G7syAx!5e0!3m2!1svi!2s!4v1718559339150!5m2!1svi!2s" width="1518" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    </div>
+
 
     @*end product*@
 

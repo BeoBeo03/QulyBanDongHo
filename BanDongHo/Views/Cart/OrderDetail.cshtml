@@ -17,6 +17,74 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+    <style>
+        /* button option */
+        .input {
+            -webkit-appearance: none;
+            /* remove default */
+            display: block;
+            margin: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            cursor: pointer;
+            vertical-align: middle;
+            box-shadow: hsla(0,0%,100%,.15) 0 1px 1px, inset hsla(0,0%,0%,.5) 0 0 0 1px;
+            background-color: hsla(0,0%,0%,.2);
+            background-image: -webkit-radial-gradient( hsla(200,100%,90%,1) 0%, hsla(200,100%,70%,1) 15%, hsla(200,100%,60%,.3) 28%, hsla(200,100%,30%,0) 70% );
+            background-repeat: no-repeat;
+            -webkit-transition: background-position .15s cubic-bezier(.8, 0, 1, 1), -webkit-transform .25s cubic-bezier(.8, 0, 1, 1);
+            outline: none;
+        }
+
+            .input:checked {
+                -webkit-transition: background-position .2s .15s cubic-bezier(0, 0, .2, 1), -webkit-transform .25s cubic-bezier(0, 0, .2, 1);
+            }
+
+            .input:active {
+                -webkit-transform: scale(1.5);
+                -webkit-transition: -webkit-transform .1s cubic-bezier(0, 0, .2, 1);
+            }
+
+
+
+            /* The up/down direction logic */
+
+            .input,
+            .input:active {
+                
+                background-position: 0 24px;
+            }
+
+                .input:checked {
+                    background-position: 0 0;
+                }
+
+                    .input:checked ~ .input,
+                    .input:checked ~ .input:active {
+                        background-position: 0 -24px;
+                    }
+        /* banking */
+        #banking-options {
+            margin-top: 10px;
+        }
+
+            #banking-options select {
+                width: 200px;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f8f8f8;
+                font-size: 16px;
+            }
+
+                #banking-options select:focus {
+                    outline: none;
+                    border-color: #66afe9;
+                    box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+                }
+
+    </style>
     <div style="width: 1300px;margin-left: 80px;margin-right: 40px;margin-bottom:220px" class="container_orderdetail">
         <h3 style="margin-bottom:15px">CHI TIẾT ĐƠN HÀNG</h3>
         @using (Html.BeginForm("DongYDatHang", "Cart"))
@@ -82,15 +150,67 @@
                     </div>
 
                 </div>
-                
+
             </div>
 
             <input style="width: 10%;height:40px; margin-top: 20px; float: right; background: #fdd835;border:none;border-radius:10px" class="submitbtn" type="submit" value="Xác nhận">
 
         }
+        <div style="margin-left: 30px;" class="payment">
+            <div class="radio-input">
+                <h4>Phương thức thanh toán</h4>
+                <input style="display: inline-block; margin-bottom: 5px;" id="COD" name="radio" type="radio" class="input" checked="">
+                <label style="margin-right: 80px;" for="COD">Thanh toán khi nhận hàng </label>
+                <input style="display: inline-block;margin-bottom:5px;" id="banking" name="radio" type="radio" class="input">
+                <label for="banking">Thanh toán qua thẻ tín dụng</label>
+
+            </div>
+            <div id="banking-options" style="display: none;">
+                <select id="payment-method">
+
+                    <option value="paypal">PayPal</option>
+                    <option value="momo">Momo</option>
+                    <option value="atm">Visa</option>
+                </select>
+
+            </div>
+        </div>
 
     </div>
-   
+    
+    <script>
+        // payment
+        document.getElementById("banking").addEventListener("change", function () {
+            var bankingOptions = document.getElementById("banking-options");
+            if (this.checked) {
+
+
+                bankingOptions.style.display = "block";
+            } else {
+                bankingOptions.style.display = "none";
+
+            }
+        }); document.getElementById("COD").addEventListener("change", function () {
+            var bankingOptions = document.getElementById("banking-options");
+            if (this.checked) {
+                bankingOptions.style.display = "none";
+            }
+        }); document.getElementById("payment-method").addEventListener("change", function () {
+            var selectedOption = this.value;
+            if (selectedOption === "paypal") {
+                window.location.href = "./Payment.html"; // Chuyển hướng đến trang thanh toán PayPal
+            } else if (selectedOption === "momo") {
+                // Chuyển hướng đến trang thanh toán Momo
+                window.location.href = "./Momo.html";
+            } else if (selectedOption === "atm") {
+                // Chuyển hướng đến trang thanh toán qua ATM
+                window.location.href = "./Visa.html";
+            }
+        });
+
+
+
+    </script>
 </body>
 </html>
 

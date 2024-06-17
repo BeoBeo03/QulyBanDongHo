@@ -165,8 +165,11 @@ namespace BanDongHo.Controllers
                     }
                     db.CTDonHang.Add(_order_detail);
                     //Số lượng tồn khi đặt mua hàng sẽ trừ vào tổng số lượng
+                    TempData["thongbao"] = "Tạo đơn hàng thành công";
                     db.SaveChanges();
+
                 }
+                TempData["thongbao"] = "Không tìm thấy đơn hàng nào phù hợp.";
                 cart.ClearCart();
                 return RedirectToAction("CheckOut_Success", "Cart");
             }

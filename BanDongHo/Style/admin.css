@@ -22,6 +22,7 @@
 
     .sidebar:hover {
         width: 350px;
+        z-index:999;
     }
 
         .sidebar:hover > .item > .text {

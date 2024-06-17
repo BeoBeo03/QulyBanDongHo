@@ -26,39 +26,136 @@
     <link rel="stylesheet" href="JS/StyleSilder.js">
 </head>
 <body>
+    <style>
+        .description{
+            margin-top:100px;
+            width:1400px;
 
-    <div class="navbar">
-        <div class="container_navbar">
-            <div class="row_navbar">
 
-                <div class="nav_content">
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nam" })">Đồng hồ nam</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nữ" })">Đồng hồ nữ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Đôi" })">Đồng hồ đôi</a>
-                    </li>
-                    <li style="width:201px!important;" class="nav-item">
-                        <a class="nav-link" href="news-category.html">Đồng hồ treo tường</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="@Url.Action("GioiThieu","HomePage")"><i class="ri-profile-line"></i>Giới thiệu</a>
-                    </li>
+        }
+        .description h2 {
+            display: inline-block;
+            line-height: normal;
+            border-bottom: 3px solid #00a651;
+            padding-right: 5px;
+            position: relative;
+            top: 2px;
+            font-weight: 800px;
+            text-transform: uppercase;
+            font-size: 18px;
+            margin: 20px 10px 0 10px;
+            line-height: 42px;
+        }
 
-                </div>
+        .description .description_content {
+            background-color: #fff;
+            padding: 15px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 1.6;
+            letter-spacing: normal;
+            margin: 4px 0px;
+            text-align: left;
+            text-decoration-style: initial;
+            text-decoration-thickness: initial;
+            text-indent: 0px;
+            text-transform: none;
+            word-spacing: 0px;
+        }
 
-            </div>
-        </div>
-    </div>
+        .description_img {
+            background-color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+            .description_img img {
+                max-width: 100%;
+            }
+
+
+        /*relate*/
+        .description .related {
+            background-color: #fff;
+            display: flex;
+            height: 360px;
+            margin-top: 40px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #bcb8b8;
+            margin-left:100px;
+        }
+
+        .content_menu_max_list {
+            
+            padding-top: 14px;
+            margin-right:70px;
+            
+           
+        }
+
+            .content_menu_max_list a {
+                transition: transform 1s ease-in;
+            }
+
+                .content_menu_max_list a:hover {
+                    transform: translateY(-30px);
+                }
+
+        .menu_item_single {
+            padding-left: 0;
+            padding-right: 0;
+            text-align: center;
+        }
+
+            .menu_item_single a {
+                cursor: pointer;
+                background-color: transparent;
+                border-radius: 8px;
+                flex-direction: column;
+                text-decoration: none;
+                transition: background-color .3s;
+                display: block;
+                position: static;
+                margin-top: 21px;
+            }
+
+                .menu_item_single a img {
+                    object-fit: cover;
+                    object-position: 50% 50%;
+                    border-radius: 8px;
+                    width: 100%;
+                    max-width: 100%;
+                    height: 100%;
+                    position: static;
+                    overflow: hidden;
+                    height: 214px;
+                    width: 300px;
+                }
+
+        /* fix lại */
+        .menu_item_name {
+            color: #353034;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: center;
+            font-family: Utopiastd, sans-serif;
+            font-size: 18px;
+            display: block;
+            /* margin-left: 130px; */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+    
     <div style="margin-bottom:20px;" class="content">
         <div class="container_content">
             <dv class="content_breadcrum">
 
                 <ul style="padding: 0;border-bottom: 2px solid rgb(233, 226, 226);padding-bottom: 10px;margin-bottom: 15px;margin-right: 120px;" class="breadcrumbs">
-                    <li> <a href="main.html">Điện thoại</a></li>
+                    <li> <a href="@Url.Action("Index","HomePage")">Điện thoại</a></li>
                     <li>
                         <span>></span>
                         <a href="">Điện thoại iPhone</a>
@@ -109,17 +206,26 @@
                             <span> @String.Format(formatMoney, "{0:c0}", Model.GiaBanDau)</span>
                             <h3>  @String.Format(formatMoney, "{0:c0}", Model.GiaSP)</h3>
                         </div>
-                        
+
                         <div class="content_details_btn">
-                            <a style="color:#000;font-size:15px" href="@Url.Action("AddToCart", "Cart", new {id = Model.IDSanpham })" class="add_to_cart_btn">
+                            <a style="color:#000;font-size:15px;display:block" href="@Url.Action("AddToCart", "Cart", new {id = Model.IDSanpham })" class="add_to_cart_btn">
                                 <i class="fa-solid fa-cart-shopping"></i>
                                 <span>Thêm vào giỏ hàng</span>
                             </a>
-                            <a style="color:#000;" href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = Model.IDSanpham })">
+                            @*<a style="color:#000;" href="@Url.Action("ThemMucYeuThich", "Favorite", new { IDSanPham = Model.IDSanpham })">
 
-                                <button style="height: 42px;" class="add_to_favorite">
-                                    <i class="fa-solid fa-heart"></i>
-                                </button>
+                        <button style="height: 42px;" class="add_to_favorite">
+                            <i class="fa-solid fa-heart"></i>
+                        </button>
+                    </a>*@
+                            <a style="color:#000;border:none">
+
+                                <form action="@Url.Action("ThemMucYeuThich", "Favorite")" method="post">
+                                    <input style="outline:0" type="hidden" name="IDSanPham" value="@Model.IDSanpham" />
+                                    <button style="height: 42px;" type="submit" class="add_to_favorite">
+                                        <i class="fa-solid fa-heart"></i>
+                                    </button>
+                                </form>
                             </a>
                         </div>
                         <div class="content_details_attribute_list">
@@ -169,7 +275,7 @@
                                 <p>
                                     @Model.MoTaSP
                                     @* Thiết kế mới vuông vức hơn so với iPhone 12, các cạnh viền được làm phẳng. Mặt lưng được hoàn thiện bóng bẩy và bền hơn.
-                                        Màn hình Super Retina XDR 6.1 inch trên iPhone 13 và 6.7 inch trên iPhone 13 Pro Max, sáng hơn, độ tương phản cao hơn. Tần số quét được nâng cấp lên 120Hz trên phiên bản Pro.Camera có nhiều cải tiến về phần cứng và xử lý ảnh. Cụm camera kép 12MP trên iPhone 13 và cụm camera ba ống kính 12MP trên bản Pro. Khả năng chụp thiếu sáng được cải thiện đáng kể.Chip A15 Bionic mới nhất, nhanh hơn 50% so với các chip Android.*@
+                            Màn hình Super Retina XDR 6.1 inch trên iPhone 13 và 6.7 inch trên iPhone 13 Pro Max, sáng hơn, độ tương phản cao hơn. Tần số quét được nâng cấp lên 120Hz trên phiên bản Pro.Camera có nhiều cải tiến về phần cứng và xử lý ảnh. Cụm camera kép 12MP trên iPhone 13 và cụm camera ba ống kính 12MP trên bản Pro. Khả năng chụp thiếu sáng được cải thiện đáng kể.Chip A15 Bionic mới nhất, nhanh hơn 50% so với các chip Android.*@
                                 </p>
                             </div>
                         </div>
@@ -187,9 +293,31 @@
                         </div>
                     </div>
                 </div>
+                <div class="description">
+                    <h2>Sản phẩm liên quan</h2>
+                    <div class="related">
+                        @foreach (var relatedProduct in ViewBag.RelatedProducts)
+                        {
+                            <div class="content_menu_max_list">
+                                <div class="menu_item_single">
+                                    <a href="@Url.Action("Index", "Product", new { id = relatedProduct.IDSanpham })">
+                                        <img src="~/Image/@relatedProduct.AnhMinhHoa" alt="@relatedProduct.TenSP">
+                                        <div class="menu_item_name">@relatedProduct.TenSP</div>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
 
 
-        </div>
+                
+
+</div>
+
+
+
+</div>
 
 
     </div>
@@ -206,6 +334,8 @@
                 mainImage.src = this.dataset.image;
             });
         });
+
+        
     </script>
     <script src="~/JS/StyleSilder.js"></script>
 </body>

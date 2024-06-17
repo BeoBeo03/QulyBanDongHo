@@ -9,11 +9,11 @@ namespace BanDongHo.Controllers
 {
     public class HomePageController : Controller
     {
-        DoAnPM_LTEntities db = new DoAnPM_LTEntities();
+     
         // GET: HomePage
         public ActionResult Index(string SearchString)
         {
-            var products = db.Product.ToList();
+            var products = DongHoDatabase.Instance.Product.ToList();
             if (!string.IsNullOrEmpty(SearchString))
             {
                 products = products.Where(p => p.TenSP.Contains(SearchString)).ToList();

@@ -74,6 +74,7 @@ namespace BanDongHo.Controllers
 
 
                 }
+                TempData["thongbao"] = "Thêm sản phẩm thành công";
                 db.Product.Add(sanPham);
 
                 db.SaveChanges();
@@ -169,8 +170,10 @@ namespace BanDongHo.Controllers
                     }
 
                     db.SaveChanges();
+                    TempData["thongbao"] = "Sửa sản phẩm thành công";
                     return RedirectToAction("Index");
                 }
+                TempData["thongbao"] = "Sửa sản phẩm thành công";
                 db.SaveChanges();
             }
             db.SaveChanges();
@@ -201,10 +204,12 @@ namespace BanDongHo.Controllers
             {
                 return HttpNotFound();
             }
-
+            
             db.Product.Remove(sanPham);
+
             db.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["thongbao"] = "Xóa sản phẩm thành công";
+            return RedirectToAction("Index", "AdminProduct");
         }
         public ActionResult Details(int? id)
         {
