@@ -24,5 +24,9 @@ namespace BanDongHo.Controllers
         {
             return View();
         }
+        public ActionResult Contact()
+        {
+            return View();
+        }
     }
 }

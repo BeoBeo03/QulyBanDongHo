@@ -1,0 +1,221 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+    <style>
+        body {
+            
+        }
+        .contact_body{
+            margin-top:110px;
+            
+        }
+        .container_contact {
+            height: auto;
+            margin:0 180px;
+        }
+        .container_back {
+            width: 100%;
+            height: 50px;
+            background-color: #f5f5f5;
+            padding:12px 15px;
+        }
+        .container_back .back_home{
+            margin:0 170px
+        }
+        .container_back span{
+            font-size: 16px;
+        }
+        .row_left_contact h1{
+            margin:10px 0px;
+            font-size:25px;
+        }
+
+        .row_left {
+           
+            border: 1px solid #e7dada;
+            margin-left: 17px;
+            text-align: left;
+            border-radius: 2px;
+            margin-top:20px;
+        }
+        .row_left ul{
+            padding:0;
+            list-style:none;
+        }
+        .row_left li{
+            margin-top:10px;
+            
+        }
+        .row_left li:last-child{
+            margin-top:20px;
+        }
+        .row_left li a{
+            text-decoration:none;
+        }
+            .row_left li a:hover {
+                color: #f2b072;
+            }
+        .row_left li i{
+            margin-right:5px;
+        }
+        .row_right {
+            height: auto;
+            border: 1px solid #e7dada;
+            margin-left: 30px;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .content_news {
+            background-color: transparent;
+            width: auto;
+            min-width: 0;
+            max-width: none;
+            height: auto;
+            margin: 0 auto;
+            
+            text-align: center;
+        }
+
+        .content_news_heading {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            position: relative;
+        }
+
+            .content_news_heading p:first-child {
+                color: #D291BC;
+                letter-spacing: .05em;
+                -webkit-text-stroke-color: #395542;
+                background-color: transparent;
+                margin-top: 50px;
+                margin-bottom: 1rem;
+                font-family: Utopiastd, sans-serif;
+                font-size: 36px;
+                font-weight: 600;
+            }
+
+            .content_news_heading p:last-child {
+                font-size: 20px;
+                color: #957DAD;
+                margin-bottom: 20px;
+                font-family: Gotham, sans-serif;
+                font-size: 20px;
+                line-height: 2em;
+            }
+
+        .content_news_line {
+            width: 300px;
+            height: 5px;
+            background-color: #FEC8D8;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .content_news_input {
+            text-align: center;
+        }
+
+            .content_news_input input {
+                border-width: 1px;
+                border-color: #D291BC;
+                width: 90%;
+                height: 40px;
+                border-radius: 8px;
+                margin: 15px;
+                padding:10px;
+                font-size: 14px;
+            }
+
+                .content_news_input input:active {
+                    border: 1px solid #fff;
+                }
+
+        .content_news_btn {
+            width: 200px;
+            height: 50px;
+            border-radius: 10px;
+            background-color: #fdbbcf;
+            margin-top: 40px;
+            font-size: 20px;
+            color: #fff;
+            cursor: pointer;
+            margin-bottom: 50px;
+            border: none;
+        }
+    </style>
+    <div style="flex:1" class="contact_body">
+        <div class="container_back">
+            <span class="back_home">
+                <a href="#">Home</a> » <span class="page">Contact</span>
+            </span>
+        </div>
+        <div class="container_contact contact">
+            <div class="row">
+                <div class="col-md-4 row_left">
+                    <div class="row_left_contact">
+                        <h1 style="border-bottom: 1px solid #e7dada;padding-bottom:10px">Contact Us</h1>
+                    </div>
+                    <ul >
+                        <li>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>828 Su Van Hanh, Distric 10, Ho Chi Minh city</span>
+                           
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-phone"></i>
+                            <a href="tel:0902718029">0902718029</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="#">danielwellitonvn@gmail.com</a>
+                        </li>
+                        <li>
+                            <div class="map">
+                                <div><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.0761132220223!2d106.60752727480535!3d10.805482489345025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752bed92698963%3A0xc777e5dda33737e2!2zQ2h1bmcgY8awIFPGoW4gS-G7syAx!5e0!3m2!1svi!2s!4v1718559339150!5m2!1svi!2s" width="350" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                            </div>
+                        </li>
+                        
+                    </ul>
+                    
+                </div>
+                <div class="col-md-8 row_right">
+                    <div class="row_right_header">
+                        <h1>Contact Information</h1>
+                    </div>
+                    <div class="content_news">
+                        
+                        <div class="content_news_input">
+                            <form id="newsletter_form">
+                                <input type="text" id="first_name" placeholder="FIRST NAME" required>
+                                <input type="text" id="last_name" placeholder="LAST NAME" required>
+                                <input type="email" id="email" placeholder="EMAIL" required>
+                               
+                                <textarea style="margin:20px" cols="90"rows="10"></textarea>
+                                <button style="margin-left: 280px;margin-right: 350px;" type="submit" class="content_news_btn">SUBCRIBE</button>
+                            </form>
+                        </div>
+
+                        <div id="success_message" style="display: none;"><img src="./img/check.jpg" alt="">Submitted successfully!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

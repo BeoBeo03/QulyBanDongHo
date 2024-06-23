@@ -65,9 +65,18 @@
             .sub-menu-dm{
                 display:none;
             }
-
-        
-
+        .category.category_icon {
+            background:none !important;
+            color: #fff !important;
+        }
+        .category_icon span{
+            color:#fff;
+        }
+        .category_icon i {
+            margin-left: 5px;
+            margin-top: 7px;
+            color:#fff;
+        }
         .category_icon:hover .sub-menu-dm {
             display: block;
             position: absolute;
@@ -152,8 +161,12 @@
             border-radius:20px;
             padding-left:20px;
         }
+        .btn_header p{
+            text-transform:uppercase;
+        }
+        
     </style>
-    <div style="background-color: #47484b" class="header">
+    <div style="top: 0; background-color: #c3906d; box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; position: fixed; z-index: 999; width: 100%; margin-bottom: 100px " class="header">
         <div class="container">
 
             <div class="row">
@@ -164,8 +177,9 @@
                 </div>
                 <a style="text-decoration: none;list-style: none;color: #000;" class="category">
                     <div class="category_icon">
-                        <i style="margin-right:10px;margin-top:5px" class="fa-solid fa-bars"></i>
-                        <span>Danh mục</span>
+
+                        <span style="text-transform: uppercase;">Danh mục</span>
+                        <i class="fa-solid fa-chevron-down"></i>
                         <div class="sub-menu-dm">
                             <a style="margin-right: 60px; margin-top: 10px; float: left;margin-left:8px;font-size:15px;display:flex " class="nav-link" href="@Url.Action("SanPhamTheoPhanLoai", "Product", new { phanloai = "Nam" })">
                                 <img style="width:100px;height:60px" src="~/Image/dh_nam_6_1.jpg" alt="Alternate Text" />
@@ -195,23 +209,23 @@
                 </div>
 
                 <div class="favorite">
-                    <a href="@Url.Action("Index","Favorite")">
+                    <a class="btn_header" href="@Url.Action("Contact","HomePage")">
 
                         <div class="favorite_icon">
                             <i style="font-size: 2.4rem;color:white;" class="fa-solid fa-store"></i>
                             <div class="favorite_name">
-                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Cửa hàng</p>
+                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Contact</p>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="favorite">
-                    <a href="@Url.Action("Index","Favorite")">
+                    <a class="btn_header" href="@Url.Action("Index","Favorite")">
 
                         <div class="favorite_icon">
                             <i style="font-size: 2.4rem;color:white;" class="fa-solid fa-heart"></i>
                             <div class="favorite_name">
-                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Yêu thích</p>
+                                <p style="font-size: 13px; color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; ">Favorite</p>
                             </div>
                         </div>
                     </a>
@@ -229,7 +243,7 @@
                                 text-align: center; line-height: 22px; padding: 0 4px;" class="header__cart-notice">
                                     @cart.Total_quantity()
                                 </span>
-                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif;">Giỏ hàng</p>
+                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; text-transform: uppercase;">Cart</p>
                             </div>
                         </a>
                     </div>
@@ -240,13 +254,13 @@
                         <div class="login_btn">
                             <a style="text-decoration: none; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("Index","CustomerUpdate")" class="login_btn">
                                 <i style="color:white" class="fa-solid fa-user login_icon"></i>
-                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif;font-size:13px">@kh.TenKH</p>
+                                <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; font-size: 13px; text-transform: uppercase;">@kh.TenKH</p>
 
                             </a>
                             <div class="sub-menu">
-                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("LogOut", "LoginRegister")"><i style="margin-right:17px" class="fa-solid fa-right-to-bracket"></i>Đăng xuất</a>
-                                <a style="float: left; color: black; margin-right: 20px; font-family: Be Vietnam Pro, sans-serif; " href="@Url.Action("TinhTrangDonHang","QlyNhapHang")"><i style="margin-right:17px" class="fa-solid fa-clock-rotate-left"></i>Lịch sử mua hàng</a>
-                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("Index", "CustomerUpdate")"><i style="margin-right:17px" class="fa-solid fa-user"></i>Cá nhân</a>
+                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("LogOut", "LoginRegister")"><i style="margin-right: 17px; text-transform: uppercase;" class="fa-solid fa-right-to-bracket"></i>Logout</a>
+                                <a style="float: left; color: black; margin-right: 20px; font-family: Be Vietnam Pro, sans-serif; " href="@Url.Action("TinhTrangDonHang","QlyNhapHang")"><i style="margin-right: 17px; text-transform: uppercase;" class="fa-solid fa-clock-rotate-left"></i>History</a>
+                                <a style="float: left; margin-right: 20px; color: black; font-family: Be Vietnam Pro, sans-serif;" href="@Url.Action("Index", "CustomerUpdate")"><i style="margin-right: 17px; text-transform: uppercase;" class="fa-solid fa-user"></i>User</a>
 
                             </div>
                         </div>
@@ -258,7 +272,7 @@
                     <div class="login">
                         <a style="text-decoration: none;" href="@Url.Action("Login","LoginRegister")" class="login_btn">
                             <i style="color:white" class="fa-solid fa-user login_icon"></i>
-                            <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; font-size: 13px ">Đăng nhập</p>
+                            <p style="color: white; margin: 0; font-family: Be Vietnam Pro, sans-serif; font-size: 13px; text-transform: uppercase; ">Login</p>
                         </a>
                     </div>
                 }
@@ -273,7 +287,7 @@
     @RenderBody()
 
     <footer>
-        <div style="position: relative;margin:0;padding:0;" class="footer">
+        <div style="margin:0;padding:0;" class="footer">
             <div style="height:350px;margin-top:30px" class="footer_container">
                 <div class="footer_items">
                     <h6 style="color:white">Menu</h6>
